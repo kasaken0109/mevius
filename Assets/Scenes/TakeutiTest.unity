@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosX: 2
   startPosZ: 2
+  moveSpeed: 10
+  angle: 1
 --- !u!212 &1269198306
 SpriteRenderer:
   m_ObjectHideFlags: 0
