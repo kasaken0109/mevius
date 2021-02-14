@@ -13,7 +13,8 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameState = GameState.GAMESTART;
+        turnName = TurnName.MOVE;
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class TurnManager : MonoBehaviour
         }
         if (m_turnNum == 0)
         {
+            gameState = GameState.GAMEOVER;
             Debug.Log("GameOver");
         }
     }

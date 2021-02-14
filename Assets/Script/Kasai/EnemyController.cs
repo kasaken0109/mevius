@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     /// <summary>攻撃出来るかどうかのフラグ</summary>
     public bool attackFlag = false;
     TurnManager turnManager;
+    ItemManager itemManager;
+    Player Player;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,11 @@ public class EnemyController : MonoBehaviour
         else if (turnManager.turnName == TurnManager.TurnName.ATTACK)
         {
             Hit();
+        }
+        if (m_hp <= 0)
+        {
+            Instantiate(m_drop, this.transform.position, this.transform.rotation);
+            Debug.Log("敵が" + m_drop + "を落とした！");
         }
     }
 
@@ -54,15 +61,10 @@ public class EnemyController : MonoBehaviour
     {
         m_hp -= power;
         Debug.Log("敵に" + power + "のダメージを与えた！");
-        if (m_hp == 0)
-        {
-            Instantiate(m_drop, this.transform.position, this.transform.rotation);
-            Debug.Log("敵に" + power + "のダメージを与えた！");
-        }
     }
 
     /// <summary>
-    /// 動く関数
+    /// 動く関数(今はいらないが今後使うように作成した)
     /// </summary>
     public void Move()
     {
