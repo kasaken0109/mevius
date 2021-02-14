@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     /// <summary>プレイヤーY座標現在地</summary>
     public int CurrentPosY { get; protected set; }
     private float squaresSize;
-    private float positionUpdateTimer;
+    private float positionUpdate;
     [SerializeField]
     private float moveSpeed = 1.0f;
     private bool ud;
@@ -31,57 +31,72 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0 && positionUpdateTimer <= 0 || Input.GetAxisRaw("Vertical") != 0 && positionUpdateTimer <= 0)
-        {
-            positionUpdateTimer = 1.0f;
+        if (Input.GetAxisRaw("Horizontal") != 0 && positionUpdate == 0 || Input.GetAxisRaw("Vertical") != 0 && positionUpdate == 0)
+        {            
             if (Input.GetAxisRaw("Horizontal") > 0 )
             {
-                CurrentPosX++;
-                ud = true;
-                lr = true;
+                if (!MapBase.Instance.GetSquaresNoIntrusion(CurrentPosX+1, CurrentPosY))
+                {
+                    CurrentPosX++;
+                    ud = true;
+                    lr = true;
+                    positionUpdate = 1.0f;
+                }
             }
             else if (Input.GetAxisRaw("Horizontal") < 0 )
             {
-                CurrentPosX--;
-                ud = false;
-                lr = false;
+                if (!MapBase.Instance.GetSquaresNoIntrusion(CurrentPosX-1, CurrentPosY))
+                {
+                    CurrentPosX--;
+                    ud = false;
+                    lr = false;
+                    positionUpdate = 1.0f;
+                }
             }
             else if (Input.GetAxisRaw("Vertical") > 0)
             {
-                CurrentPosY++;
-                ud = true;
-                lr = false;
+                if (!MapBase.Instance.GetSquaresNoIntrusion(CurrentPosX, CurrentPosY + 1))
+                {
+                    CurrentPosY++;
+                    ud = true;
+                    lr = false;
+                    positionUpdate = 1.0f;
+                }
             }
             else if (Input.GetAxisRaw("Vertical") < 0)
             {
-                CurrentPosY--;
-                ud = false;
-                lr = true;
+                if (!MapBase.Instance.GetSquaresNoIntrusion(CurrentPosX, CurrentPosY - 1))
+                {
+                    CurrentPosY--;
+                    ud = false;
+                    lr = true;
+                    positionUpdate = 1.0f;
+                }
             }
-            //transform.position = new Vector2(CurrentPosX * squaresSize, CurrentPosY * squaresSize);
         }        
-        if (positionUpdateTimer > 0)
+        if (positionUpdate > 0)
         {
-            positionUpdateTimer -= moveSpeed * Time.deltaTime;
-            if (positionUpdateTimer < 0)
+            positionUpdate -= moveSpeed * Time.deltaTime;
+            if (positionUpdate <= 0)
             {
-                positionUpdateTimer = 0;
+                positionUpdate = 0;
+                //ここでターン終了処理呼び出し
             }
             if (ud && !lr)
             {
-                transform.position = new Vector2(CurrentPosX * squaresSize, (CurrentPosY - positionUpdateTimer) * squaresSize);
+                transform.position = new Vector2(CurrentPosX * squaresSize, (CurrentPosY - positionUpdate) * squaresSize);
             }
             else if (!ud && lr)
             {
-                transform.position = new Vector2(CurrentPosX * squaresSize, (CurrentPosY + positionUpdateTimer) * squaresSize);
+                transform.position = new Vector2(CurrentPosX * squaresSize, (CurrentPosY + positionUpdate) * squaresSize);
             }
             else if (ud && lr)
             {
-                transform.position = new Vector2((CurrentPosX - positionUpdateTimer) * squaresSize, CurrentPosY * squaresSize);
+                transform.position = new Vector2((CurrentPosX - positionUpdate) * squaresSize, CurrentPosY * squaresSize);
             }
             else if (!ud && !lr)
             {
-                transform.position = new Vector2((CurrentPosX + positionUpdateTimer) * squaresSize, CurrentPosY * squaresSize);
+                transform.position = new Vector2((CurrentPosX + positionUpdate) * squaresSize, CurrentPosY * squaresSize);
             }
         }
     }
