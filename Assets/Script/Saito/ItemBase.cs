@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Material
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Wood,
+        Metal
     }
 }

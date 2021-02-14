@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wood : ItemBase
+public class Metal : ItemBase
 {
     Material material;
-    public Wood()
+    public Metal()
     {
-        material = Material.Wood;
+        material = Material.Metal;
     }
 }
