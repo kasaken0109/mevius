@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MapBase : MonoBehaviour
 {
-    [SerializeField]
-    private int mapSizeX;//マップ全体のX座標最大値
-    [SerializeField]
-    private int mapSizeY;//マップ全体のY座標最大値
-    [SerializeField]
-    private float squresSize;//マス目の大きさ
-    [SerializeField]
-    GameObject panel = null;//確認用仮パネルデータ
+    /// <summary>マップ全体のX座標最大値</summary>
+    [SerializeField] private int mapSizeX;
+    /// <summary>マップ全体のY座標最大値</summary>
+    [SerializeField] private int mapSizeY;
+    /// <summary>マス目の大きさ</summary>
+    [SerializeField] private float squresSize;
+    /// <summary>確認用仮パネルデータ
+    [SerializeField] GameObject panel = null;
+    public static MapBase Instance { get; private set; }//マップ情報の取得を可能にする
     /// <summary>
     /// マス目のデータ
     /// </summary>
@@ -46,9 +47,14 @@ public class MapBase : MonoBehaviour
             NoIntrusion = false;
         }
     }
-    public List<SquaresData> MapData { get; private set; }//マップの全マス目情報
+    /// <summary>マップの全マス目情報</summary>
+    public List<SquaresData> MapData { get; private set; }
     private void Awake()
     {
+        if (!Instance)
+        {
+            Instance = this;
+        }
         MapCreate(mapSizeX, mapSizeY);
     }
     /// <summary>
@@ -80,6 +86,17 @@ public class MapBase : MonoBehaviour
     /// <returns></returns>
     public bool GetSquaresNoIntrusion(int x,int y)
     {
-        return MapData[x + y * mapSizeX].NoIntrusion;
+        if (x < mapSizeX && y < mapSizeY && x >= 0 && y >= 0)
+        {
+            return MapData[x + y * mapSizeX].NoIntrusion;
+        }
+        else
+        {
+            return true;
+        }
     }
+    
+    public int GetMapMaxX() { return mapSizeX; }
+    public int GetMapMaxY() { return mapSizeY; }
+    public float GetSquaresSize() { return squresSize; }
 }
