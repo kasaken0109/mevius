@@ -5,11 +5,11 @@ using UnityEngine;
 public class MapBase : MonoBehaviour
 {
     /// <summary>マップ全体のX座標最大値</summary>
-    [SerializeField] private int mapSizeX;
+    [SerializeField] private int mapSizeX = 10;
     /// <summary>マップ全体のY座標最大値</summary>
-    [SerializeField] private int mapSizeY;
+    [SerializeField] private int mapSizeY = 10;
     /// <summary>マス目の大きさ</summary>
-    [SerializeField] private float squresSize;
+    [SerializeField] private float squresSize = 10.0f;
     /// <summary>確認用仮パネルデータ
     [SerializeField] GameObject panel = null;
     public static MapBase Instance { get; private set; }//マップ情報の取得を可能にする
