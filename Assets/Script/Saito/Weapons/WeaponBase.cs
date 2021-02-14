@@ -4,14 +4,5 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
-
-    
-    
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //public int AttackPoint { get; private set; }
 }

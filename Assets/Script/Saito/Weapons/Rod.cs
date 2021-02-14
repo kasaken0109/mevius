@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rod : MonoBehaviour
+public class Rod : ItemBase
 {
-    public int AttackPoint = 5;
+    public int AttackPoint { get; private set; }
+
 }

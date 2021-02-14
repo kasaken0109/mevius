@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour
 {
-    public enum Material
+    /// <summary> 素材の種類 </summary>
+    public enum RecycleMaterial
     {
         Wood,
         Metal

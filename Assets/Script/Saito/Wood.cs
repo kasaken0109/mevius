@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Wood : ItemBase
 {
-    Material material;
+    RecycleMaterial material;
     public Wood()
     {
-        material = Material.Wood;
+        material = RecycleMaterial.Wood;
     }
 }
