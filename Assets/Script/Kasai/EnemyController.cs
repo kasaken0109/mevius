@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    /// <summary> 敵の体力 </summary>
+    /// <summary> 体力 </summary>
     [SerializeField] int m_hp = 10;
-    /// <summary> 敵の落とす素材 </summary>
+    /// <summary> 落とす素材 </summary>
     [SerializeField] GameObject m_drop = null;
-    /// <summary> 敵の動く速度 </summary>
+    /// <summary> 動く速度 </summary>
     [SerializeField] int m_speed = 10;
-    /// <summary>  </summary>
+    /// <summary>攻撃出来るかどうかのフラグ</summary>
     public bool attackFlag = false;
     TurnManager turnManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,7 @@ public class EnemyController : MonoBehaviour
     }
 
     /// <summary>
-    /// 敵が攻撃をする関数
+    /// 攻撃をする関数
     /// </summary>
     public void Hit()
     {
@@ -46,7 +47,7 @@ public class EnemyController : MonoBehaviour
     }
 
     /// <summary>
-    /// 敵が攻撃を受けたときに呼ばれる関数
+    /// 攻撃を受けたときに呼ばれる関数
     /// </summary>
     /// <param name="power">プレイヤーの攻撃力</param>
     public void Damage(int power)
@@ -60,6 +61,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 動く関数
+    /// </summary>
     public void Move()
     {
 
