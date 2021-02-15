@@ -113,4 +113,5 @@ public class Player : MonoBehaviour
             inputTimer -= Time.deltaTime;
         }
     }
+
 }
