@@ -165,6 +165,10 @@ public class MapBase : MonoBehaviour
                 MapData[x + y * mapSizeX].OutItem();
                 Debug.Log("アイテム取得");
             }
+            else
+            {
+                Debug.Log("アイテム無し" + x + "," + y);
+            }
         }
     }
     public int GetMapMaxX() { return mapSizeX; }

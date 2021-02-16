@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
                 }
             }
             //ここでアイテムがあればターン終了時に取得
+            MapBase.Instance.GetItemOnSquares(CurrentPosX, CurrentPosY);
             inputTimer = 0.5f;
         }        
         //移動した際の処理
