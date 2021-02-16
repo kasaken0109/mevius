@@ -11,10 +11,9 @@ public class ItemManager : MonoBehaviour
     public int metalNumber = 0;
     private GameObject[] items;
 
-    private void Start()
-    {
-        
-    }
+    /// <summary>
+    /// プレイヤーと重なってるアイテムを取得する
+    /// </summary>
     public void SetItem()
     {
         GameObject player = GameObject.Find("Player");
@@ -23,7 +22,6 @@ public class ItemManager : MonoBehaviour
         {
             if (item.transform.position.x == player.transform.position.x && item.transform.position.y == player.transform.position.y)
             {
-                Debug.Log("e");
                 if (item.GetComponent<Wood>())
                 {
                     woodNumber++;
@@ -35,9 +33,6 @@ public class ItemManager : MonoBehaviour
                     Destroy(item);
                 }
             }
-            Debug.Log(player.transform.position);
-        }
-        
-    }
-    
+        }   
+    } 
 }

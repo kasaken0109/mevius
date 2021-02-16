@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rod : ItemBase
+public class Rod : WeaponBase
 {
-    public int AttackPoint { get; private set; }
-
+    private void Start()
+    {
+        EnduranceValue = 2;
+        AttackPoint = 1;
+        RequiredWoodValue = 1;
+        RequiredMetalValue = 0;
+    }
 }

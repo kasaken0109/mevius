@@ -7,16 +7,19 @@ public class ItemBase : MonoBehaviour
     public int posX;
     public int posY;
     private float squaresSize;
+    public RecycleMaterial material;
     private void Start()
     {
+        posX = Random.Range(0, MapBase.Instance.GetMapMaxX());
+        posY = Random.Range(0, MapBase.Instance.GetMapMaxY());
         squaresSize = MapBase.Instance.GetSquaresSize();
         transform.position = new Vector2(posX * squaresSize, posY * squaresSize);
     }
-    
-    /// <summary> 素材の種類 </summary>
+    public ItemBase GetItem() { return this; }
     public enum RecycleMaterial
     {
-        Wood,
-        Metal
+        wood,
+        metal,
+        weapon
     }
 }
