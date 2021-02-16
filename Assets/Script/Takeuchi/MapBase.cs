@@ -22,6 +22,8 @@ public class MapBase : MonoBehaviour
         public int PosY { get; private set; }//Y座標
         public bool NoIntrusion { get; private set; }//trueで侵入不可
         public Player Character { get; private set; }//キャラクター情報の入れ物、型は仮でPlayer
+        /// <summary> アイテムの入れ物　</summary>
+        public ItemBase Item { get; private set; }
         public int movePoint = 0;//距離計算用仮データ
         /// <summary>
         /// 初期設定用コンストラクタ
@@ -56,6 +58,18 @@ public class MapBase : MonoBehaviour
         {
             Character = null;
             IntrusionTrue();
+        }
+        /// <summary>
+        /// アイテムを受け取り配置する
+        /// </summary>
+        /// <param name="item">配置アイテム</param>
+        public void OnItem(ItemBase item)
+        {
+            Item = item;
+        }
+        public void OutItem()
+        {
+            Item = null;
         }
     }
     /// <summary>マップの全マス目情報</summary>
@@ -123,7 +137,36 @@ public class MapBase : MonoBehaviour
             return true;
         }
     }
-    
+    /// <summary>
+    /// 指定したマス目にアイテムを配置する
+    /// </summary>
+    /// <param name="x">X座標</param>
+    /// <param name="y">Y座標</param>
+    /// <param name="item">配置アイテム</param>
+    public void SetItemOnSquares(int x,int y,ItemBase item)
+    {
+        if (x < mapSizeX && y < mapSizeY && x >= 0 && y >= 0)
+        {
+            MapData[x + y * mapSizeX].OnItem(item);
+        }
+    }
+    /// <summary>
+    /// 指定したマス目にアイテムがあれば取得する
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    public void GetItemOnSquares(int x,int y)
+    {
+        if (x < mapSizeX && y < mapSizeY && x >= 0 && y >= 0)
+        {
+            if (MapData[x + y * mapSizeX].Item)
+            {
+                MapData[x + y * mapSizeX].Item.GetItem();
+                MapData[x + y * mapSizeX].OutItem();
+                Debug.Log("アイテム取得");
+            }
+        }
+    }
     public int GetMapMaxX() { return mapSizeX; }
     public int GetMapMaxY() { return mapSizeY; }
     public float GetSquaresSize() { return squresSize; }
