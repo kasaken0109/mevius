@@ -21,6 +21,7 @@ public class MapBase : MonoBehaviour
         public int PosX { get; private set; }//X座標
         public int PosY { get; private set; }//Y座標
         public bool NoIntrusion { get; private set; }//trueで侵入不可
+        public Player Character { get; private set; }//キャラクター情報の入れ物、型は仮でPlayer
         public int movePoint = 0;//距離計算用仮データ
         /// <summary>
         /// 初期設定用コンストラクタ
@@ -45,6 +46,16 @@ public class MapBase : MonoBehaviour
         public void IntrusionTrue()
         {
             NoIntrusion = false;
+        }
+        public void OnCharacter(Player character)
+        {
+            Character = character;
+            NoIntrusionTrue();
+        }
+        public void OutCharacter()
+        {
+            Character = null;
+            IntrusionTrue();
         }
     }
     /// <summary>マップの全マス目情報</summary>
@@ -76,6 +87,23 @@ public class MapBase : MonoBehaviour
                 mapPanel.transform.position = new Vector2(x * squresSize, y * squresSize);
                 mapPanel.transform.SetParent(transform);
             }
+        }
+    }
+    /// <summary>
+    /// 指定したマス目の情報を返す
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public SquaresData GetSquaresData(int x,int y)
+    {
+        if (x < mapSizeX && y < mapSizeY && x >= 0 && y >= 0)
+        {
+            return MapData[x + y * mapSizeX];
+        }
+        else
+        {
+            return null;
         }
     }
     /// <summary>
