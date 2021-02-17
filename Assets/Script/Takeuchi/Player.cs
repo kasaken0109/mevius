@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 状態分け
+/// </summary>
+public enum StateType
+{
+    Wait,
+    Move,
+    Attack,
+    Damage,
+}
 public class Player : MonoBehaviour
 {
     /// <summary>プレイヤーX座標初期位置</summary>
@@ -91,7 +101,7 @@ public class Player : MonoBehaviour
                 positionUpdate = 0;
                 //ここでターン終了処理呼び出し
             }
-            switch (angle)
+            switch (angle)//移動演出
             {
                 case MoveAngle.Up:
                     transform.position = new Vector2(CurrentPosX * squaresSize, (CurrentPosY - positionUpdate) * squaresSize);
