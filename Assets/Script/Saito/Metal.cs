@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wood : ItemBase
+public class Metal : ItemBase
 {
-    public Wood()
+    public Metal()
     {
-        material = RecycleMaterial.wood;
+        material = RecycleMaterial.metal;
     }
 }
