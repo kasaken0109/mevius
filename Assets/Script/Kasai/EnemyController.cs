@@ -8,8 +8,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int m_hp = 10;
     /// <summary> 落とす素材 </summary>
     [SerializeField] GameObject m_drop = null;
+    /// <summary> 落とす素材の数 </summary>
+    [SerializeField] public int m_dropNum = 2;
     /// <summary> 動く速度 </summary>
     [SerializeField] int m_speed = 10;
+    /// <summary> 攻撃力 </summary>
+    [SerializeField] int m_power = 10;
     [SerializeField] Animation m_animation;
     /// <summary>攻撃出来るかどうかのフラグ</summary>
     public bool attackFlag = false;
@@ -18,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     TurnManager turnManager;
     ItemManager itemManager;
+    MapBase mapBase;
     Player Player;
 
     // Start is called before the first frame update
@@ -38,6 +43,11 @@ public class EnemyController : MonoBehaviour
         //{
         //    Hit();
         //}
+        if ()
+        {
+
+        }
+
 
         switch (turnManager.turnName)
         {
@@ -53,10 +63,6 @@ public class EnemyController : MonoBehaviour
             case TurnManager.TurnName.ENEMYATTACK:
                 Hit();
                 break;
-            case TurnManager.TurnName.ITEMMAKE:
-                break;
-            case TurnManager.TurnName.TURNEND:
-                break;
             default:
                 break;
         }
@@ -64,6 +70,7 @@ public class EnemyController : MonoBehaviour
         {
             Instantiate(m_drop, this.transform.position, this.transform.rotation);
             Debug.Log("敵が" + m_drop + "を落とした！");
+            itemManager.AddItem(m_dropNum);
         }
     }
 
@@ -77,7 +84,10 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void Hit()
     {
-
+        if (attackFlag)
+        {
+            Player.Hit(m_power);
+        }
     }
 
     /// <summary>
