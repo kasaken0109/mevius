@@ -43,10 +43,10 @@ public class EnemyController : MonoBehaviour
         //{
         //    Hit();
         //}
-        if ()
-        {
+        //if ()
+        //{
 
-        }
+        //}
 
 
         switch (turnManager.turnName)
@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
         {
             Instantiate(m_drop, this.transform.position, this.transform.rotation);
             Debug.Log("敵が" + m_drop + "を落とした！");
-            itemManager.AddItem(m_dropNum);
+            //itemManager.AddItem(m_dropNum);
         }
     }
 
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
     {
         if (attackFlag)
         {
-            Player.Hit(m_power);
+            //Player.Hit(m_power);
         }
     }
 
