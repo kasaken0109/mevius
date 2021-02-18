@@ -10,8 +10,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject m_drop = null;
     /// <summary> 動く速度 </summary>
     [SerializeField] int m_speed = 10;
+    [SerializeField] Animation m_animation;
     /// <summary>攻撃出来るかどうかのフラグ</summary>
     public bool attackFlag = false;
+    /// <summary> 動けるかどうか判定するフラグ </summary>
+    public bool MoveMode = false;
+
     TurnManager turnManager;
     ItemManager itemManager;
     Player Player;
@@ -25,13 +29,36 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (turnManager.turnName == TurnManager.TurnName.MOVE)
-        {
+        //if (turnManager.turnName == TurnManager.TurnName.PLAYERMOVE)
+        //{
+        //    turnManager.turnName = TurnManager.TurnName.ENEMYMOVE;
+        //    Move();
+        //}
+        //else if (turnManager.turnName == TurnManager.TurnName.ENEMYATTACK)
+        //{
+        //    Hit();
+        //}
 
-        }
-        else if (turnManager.turnName == TurnManager.TurnName.ATTACK)
+        switch (turnManager.turnName)
         {
-            Hit();
+            case TurnManager.TurnName.PLAYERMOVE:
+                turnManager.turnName = TurnManager.TurnName.ENEMYMOVE;
+                break;
+            case TurnManager.TurnName.ENEMYMOVE:
+                Move();
+                break;
+            case TurnManager.TurnName.PLAYERATTACK:
+                turnManager.turnName = TurnManager.TurnName.ENEMYATTACK;
+                break;
+            case TurnManager.TurnName.ENEMYATTACK:
+                Hit();
+                break;
+            case TurnManager.TurnName.ITEMMAKE:
+                break;
+            case TurnManager.TurnName.TURNEND:
+                break;
+            default:
+                break;
         }
         if (m_hp <= 0)
         {
@@ -68,6 +95,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void Move()
     {
+        if (MoveMode)
+        {
 
+        }
     }
 }

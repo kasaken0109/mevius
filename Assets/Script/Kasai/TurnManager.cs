@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         gameState = GameState.GAMESTART;
-        turnName = TurnName.MOVE;
+        turnName = TurnName.PLAYERMOVE;
     }
 
     // Update is called once per frame
@@ -36,8 +36,10 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     public enum TurnName
     {
-        MOVE,
-        ATTACK,
+        PLAYERMOVE,
+        ENEMYMOVE,
+        PLAYERATTACK,
+        ENEMYATTACK,
         ITEMMAKE,
         TURNEND,
     }
