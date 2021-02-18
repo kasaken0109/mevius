@@ -6,16 +6,10 @@ public class Rod : WeaponBase
 {
     private void Start()
     {
-        EnduranceValue = 2;
-        AttackPoint = 1;
-        RequiredWoodValue = 1;
-        RequiredMetalValue = 0;
+        enduranceValue = 2;
+        attackPoint = 1;
     }
-    public void Craft()
-    {
-        if (ItemManager.woodNumber >= RequiredWoodValue)
-        {
-            ItemManager.woodNumber -= RequiredWoodValue;
-        }
-    }
+    
+    public Rod GetRod() { return this; }
+
 }

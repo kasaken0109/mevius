@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Saw : WeaponBase
 {
+    
     bool clearFlag = true;
     private void Start()
     {
-        EnduranceValue = 2;
-        AttackPoint = 3;
-        RequiredWoodValue = 1;
-        RequiredMetalValue = 2;
+        enduranceValue = 1;
+        attackPoint = 2;
     }
+    public Saw GetSaw() { return this; }
 }
