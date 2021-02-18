@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemBase : MonoBehaviour
 {
     public int posX;
     public int posY;
     private float squaresSize;
+    [SerializeField] GameObject m_woodText;
+    [SerializeField] GameObject m_metalText;
     void Start()
     {
         Setup();
@@ -19,7 +22,7 @@ public class ItemBase : MonoBehaviour
         transform.position = new Vector2(posX * squaresSize, posY * squaresSize);
         MapBase.Instance.SetItemOnSquares(posX, posY, this);
     }
-
+    
     public virtual ItemBase GetItem() { return this; }
     
 }

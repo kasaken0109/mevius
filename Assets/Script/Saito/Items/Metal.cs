@@ -8,6 +8,7 @@ public class Metal : ItemBase
     {
         ItemManager.metalNumber++;
         this.gameObject.SetActive(false);
+//        ItemManager.ChangeText();
         return this;
     }
 }

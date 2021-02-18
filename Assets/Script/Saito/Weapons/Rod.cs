@@ -9,7 +9,10 @@ public class Rod : WeaponBase
         enduranceValue = 2;
         attackPoint = 1;
     }
-    
+    public override void BreakWeapon()
+    {
+        ItemManager.woodNumber += 2;
+    }
     public Rod GetRod() { return this; }
 
 }

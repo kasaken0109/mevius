@@ -11,5 +11,10 @@ public class Saw : WeaponBase
         enduranceValue = 1;
         attackPoint = 2;
     }
+    public override void BreakWeapon()
+    {
+        ItemManager.woodNumber += 1;
+        ItemManager.metalNumber += 2;
+    }
     public Saw GetSaw() { return this; }
 }

@@ -8,6 +8,7 @@ public class Wood : ItemBase
     {
         ItemManager.woodNumber++;
         this.gameObject.SetActive(false);
+//        ItemManager.ChangeText();
         return this;
     }
 }

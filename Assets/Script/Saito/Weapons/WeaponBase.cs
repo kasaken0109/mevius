@@ -8,8 +8,8 @@ public class WeaponBase : MonoBehaviour
     public int enduranceValue;
     /// <summary>攻撃力</summary>
     public int attackPoint;
-    
-    
+
+    public virtual void BreakWeapon() { }
     public virtual WeaponBase GetWeapon() { return this; }
     
 }
