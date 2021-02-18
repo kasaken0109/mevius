@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class WeaponBase : ItemBase
 {
     /// <summary>使用回数</summary>
     public int EnduranceValue { get; set; }
@@ -12,6 +12,7 @@ public class WeaponBase : MonoBehaviour
     public int RequiredWoodValue { get; set; }
     /// <summary>鉄の必要数</summary>
     public int RequiredMetalValue { get; set; }
-
-    public WeaponBase GetWeapon() { return this; }
+    
+    public virtual WeaponBase GetWeapon() { return this; }
+    
 }

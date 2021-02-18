@@ -11,4 +11,11 @@ public class Rod : WeaponBase
         RequiredWoodValue = 1;
         RequiredMetalValue = 0;
     }
+    public void Craft()
+    {
+        if (ItemManager.woodNumber >= RequiredWoodValue)
+        {
+            ItemManager.woodNumber -= RequiredWoodValue;
+        }
+    }
 }
