@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Garbage garbage;
     private Rigidbody2D rB = null;
-    private Tools useTools;
+    private List<Tools> useTools;
     private enum MoveAngle
     {
         Up,
@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     {
         rB = GetComponent<Rigidbody2D>();
         transform.position = new Vector2(CurrentPosX, CurrentPosY);
+        useTools = new List<Tools>();
     }
 
     void Update()
@@ -139,6 +140,10 @@ public class Player : MonoBehaviour
         rB.velocity = new Vector2(CurrentPosX, CurrentPosY);
     }
 
+    public void SetTools(Tools tool)
+    {
+        useTools.Add(tool);
+    }
     public void OnClickChangeTools()
     {
         if(equipTools == EquipType.Hammer)
@@ -171,9 +176,6 @@ public class Player : MonoBehaviour
             this.garbage = garbage;
         }
     }
-
-    
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         Garbage garbage = collision.GetComponent<Garbage>();
