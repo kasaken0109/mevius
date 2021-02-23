@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3150436973920055690}
   - component: {fileID: 7559975339023738656}
   m_Layer: 0
-  m_Name: "\u4EEE\u7D20\u6750"
+  m_Name: "\u4EEE\u7D20\u6750\u9244"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51005889cd9817f48a2f107248850b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 0.4
-  moveSpeed: 5
+  materialType: 0
+  moveTime: 0.8
+  moveSpeed: 2
 --- !u!50 &3150436973920055690
 Rigidbody2D:
   serializedVersion: 4

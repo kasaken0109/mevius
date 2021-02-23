@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private float maxPosX;
     [SerializeField]
     private float maxPosY;
+    private float moveX;
+    private float moveY;
     /// <summary> 主人公の装備状態 </summary>
     [SerializeField] EquipType equipTools = EquipType.None;
     public static Player Instance { get; private set; }
@@ -59,8 +61,7 @@ public class Player : MonoBehaviour
         rB = GetComponent<Rigidbody2D>();
         transform.position = new Vector2(CurrentPosX, CurrentPosY);
     }
-
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
                     if (haveTool.toolType == ToolsType.ChainSaw)
                     {
                         obstacle.BreakObstacle();
+                        Debug.Log("木を切り倒した");
                     }
                 }
             }
@@ -86,44 +88,70 @@ public class Player : MonoBehaviour
                 Debug.Log("該当なし");
             }
         }
+        if (moveNow)
+        {
+            CurrentPosX = transform.position.x;
+            CurrentPosY = transform.position.y;
+            if (CurrentPosX > maxPosX)
+            {
+                moveX = 0;
+            }
+            if (CurrentPosX < -maxPosX)
+            {
+                moveX = 0;
+            }
+            if (CurrentPosY > maxPosY)
+            {
+                moveY = 0;
+            }
+            if (CurrentPosY < -maxPosY)
+            {
+                moveY = 0;
+            }
+        }
+    }
+    private void FixedUpdate()
+    {
         //入力があれば移動、
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             moveNow = true;
+            CurrentPosX = transform.position.x;
+            CurrentPosY = transform.position.y;
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                CurrentPosX += moveSpeed * Time.deltaTime;
+                moveX = moveSpeed;
                 angle = MoveAngle.Right;
                 if (CurrentPosX > maxPosX)
                 {
-                    CurrentPosX = maxPosX;
+                    moveX = 0;
                 }
             }
             else if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                CurrentPosX -= moveSpeed * Time.deltaTime;
+                moveX = -moveSpeed;
                 angle = MoveAngle.Left;
                 if (CurrentPosX < -maxPosX)
                 {
-                    CurrentPosX = -maxPosX;
+                    moveX = 0;
                 }
             }
             if (Input.GetAxisRaw("Vertical") > 0)
             {
-                CurrentPosY += moveSpeed * Time.deltaTime;
+                moveY = moveSpeed;
                 angle = MoveAngle.Up;
                 if (CurrentPosY > maxPosY)
                 {
-                    CurrentPosY = maxPosY;
+                    moveY = 0;
                 }
             }
             else if (Input.GetAxisRaw("Vertical") < 0)
             {
-                CurrentPosY -= moveSpeed * Time.deltaTime;
+                moveY = -moveSpeed;
                 angle = MoveAngle.Down;
                 if (CurrentPosY < -maxPosY)
                 {
-                    CurrentPosY = -maxPosY;
+                    moveY = 0;
                 }
             }
         }
@@ -143,17 +171,32 @@ public class Player : MonoBehaviour
                 default:
                     break;
             }
-            //transform.position = new Vector2(CurrentPosX, CurrentPosY);
-            //rB.velocity = new Vector2(CurrentPosX, CurrentPosY);
             moveNow = false;
         }
         else
         {
-            //rB.velocity = new Vector2(0, 0);
-            CurrentPosX = 0;
-            CurrentPosY = 0;
+            moveX = 0;
+            moveY = 0;
         }
-        rB.velocity = new Vector2(CurrentPosX, CurrentPosY);
+        rB.velocity = new Vector2(moveX, moveY);
+        CurrentPosX = transform.position.x;
+        CurrentPosY = transform.position.y;
+        if (CurrentPosX > maxPosX)
+        {
+            moveX = 0;
+        }
+        if (CurrentPosX < -maxPosX)
+        {
+            moveX = 0;
+        }
+        if (CurrentPosY > maxPosY)
+        {
+            moveY = 0;
+        }
+        if (CurrentPosY < -maxPosY)
+        {
+            moveY = 0;
+        }
     }
 
     public void SetTools(Tools tool)
@@ -162,12 +205,15 @@ public class Player : MonoBehaviour
         {
             case ToolsType.Hammer:
                 useTools[0] = tool;
+                Debug.Log("ピッケルを作った");
                 break;
             case ToolsType.Shovel:
                 useTools[1] = tool;
+                Debug.Log("シャベルを作った");
                 break;
             case ToolsType.ChainSaw:
                 useTools[2] = tool;
+                Debug.Log("チェーンソーを作った");
                 break;
             default:
                 break;
@@ -184,22 +230,21 @@ public class Player : MonoBehaviour
                     if (useTools[1])
                     {
                         haveTool = useTools[1];
-                        Debug.Log("持ち替えた");
+                        Debug.Log("シャベルに持ち替えた");
                     }
                     break;
                 case ToolsType.Shovel:
                     if (useTools[0])
                     {
                         haveTool = useTools[0];
-                        Debug.Log("持ち替えた");
+                        Debug.Log("ピッケルに持ち替えた");
                     }
                     break;
                 case ToolsType.ChainSaw:
                     break;
-                default:                    
+                default:
                     break;
             }
-            Debug.Log("０");
         }
         else
         {
@@ -208,11 +253,9 @@ public class Player : MonoBehaviour
                 if (item)
                 {
                     haveTool = item;
-                    Debug.Log("１");
                     return;
                 }
             }
-            Debug.Log("２");
         }
     }
     public void OnClickCraftHammer()

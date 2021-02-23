@@ -22,6 +22,7 @@ public class Garbage : MonoBehaviour
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
                     totalDoropNumber--;
+                    Debug.Log("上手く取れた");
                 }
                 else
                 {
@@ -38,6 +39,7 @@ public class Garbage : MonoBehaviour
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
                     totalDoropNumber--;
+                    Debug.Log("上手く取れた");
                 }
                 else
                 {
