@@ -39,6 +39,7 @@ public class Material : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();
         if (player)
         {
+            MaterialManager.Instance.AddMaterial(materialType);
             Destroy(this.gameObject);
         }
     }

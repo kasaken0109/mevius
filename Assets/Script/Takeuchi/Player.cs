@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     Garbage garbage;
     private Rigidbody2D rB = null;
+    private Tools[] haveTools;
+    private Tools useTools;
     private enum MoveAngle
     {
         Up,
@@ -57,6 +59,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Jump"))
+        {
+            garbage.DropMaterial(equipTools);
+        }
         //入力があれば移動、
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
@@ -125,10 +131,22 @@ public class Player : MonoBehaviour
             CurrentPosY = 0;
         }
         rB.velocity = new Vector2(CurrentPosX, CurrentPosY);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            garbage.DropMaterial(equipTools);
-        }
     }
 
+    public void OnClickChangeTools()
+    {
+
+    }
+    public void OnClickCraftHammer()
+    {
+
+    }
+    public void OnClickCraftShovel()
+    {
+
+    }
+    public void OnClickToTakeApartTool()
+    {
+
+    }
 }

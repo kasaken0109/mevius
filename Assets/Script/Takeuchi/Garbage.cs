@@ -17,7 +17,7 @@ public class Garbage : MonoBehaviour
             case EquipType.None:
                 break;
             case EquipType.Hammer:
-                if (garbageType == 0)
+                if (garbageType == 0 && totalDoropNumber > 0)
                 {
                     for (int i = 0; i < 5; i++)
                     {
@@ -25,10 +25,11 @@ public class Garbage : MonoBehaviour
                         Material material = instance.GetComponent<Material>();
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
+                    totalDoropNumber--;
                 }
                 break;
             case EquipType.Shovel:
-                if (garbageType == 1)
+                if (garbageType == 1 && totalDoropNumber > 0)
                 {
                     for (int i = 0; i < 5; i++)
                     {
@@ -36,6 +37,7 @@ public class Garbage : MonoBehaviour
                         Material material = instance.GetComponent<Material>();
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
+                    totalDoropNumber--;
                 }
                 break;
             default:
