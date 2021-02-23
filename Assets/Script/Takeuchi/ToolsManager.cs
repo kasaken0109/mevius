@@ -4,5 +4,22 @@ using UnityEngine;
 
 public class ToolsManager : MonoBehaviour
 {
-    
+    public static ToolsManager Instance { get; private set; }
+    [SerializeField]
+    Tools[] AllTools;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public void CreateTools(int orderTool)
+    {
+        if (MaterialManager.Instance.CheckMaterial(AllTools[orderTool].recipe))
+        {
+            MaterialManager.Instance.UseMaterial(AllTools[orderTool].recipe);
+        }
+        else
+        {
+            Debug.Log("素材が足りません");
+        }
+    }
 }
