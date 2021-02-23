@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 状態分け
+/// 装備状態分け
 /// </summary>
-public enum StateType
+public enum ToolsType
 {
-    Wait,
-    Move,
-    Attack,
-    Damage,
+    None,
+    Hammer,
+    Shovel,
 }
 public class Player : MonoBehaviour
 {
@@ -29,6 +28,8 @@ public class Player : MonoBehaviour
     private float maxPosX;
     [SerializeField]
     private float maxPosY;
+    /// <summary> 主人公の装備状態 </summary>
+    [SerializeField] ToolsType equipTools = ToolsType.None;
     private enum MoveAngle
     {
         Up,
