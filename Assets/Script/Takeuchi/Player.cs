@@ -10,6 +10,7 @@ public enum EquipType
     None,
     Hammer,
     Shovel,
+    ChainSaw,
 }
 public class Player : MonoBehaviour
 {
@@ -31,10 +32,11 @@ public class Player : MonoBehaviour
     /// <summary> 主人公の装備状態 </summary>
     [SerializeField] EquipType equipTools = EquipType.None;
     public static Player Instance { get; private set; }
-    [SerializeField]
     Garbage garbage;
+    Obstacle obstacle;
     private Rigidbody2D rB = null;
-    private List<Tools> useTools;
+    private Tools[] useTools;
+    private Tools haveTool;
     private enum MoveAngle
     {
         Up,
@@ -49,12 +51,12 @@ public class Player : MonoBehaviour
         CurrentPosX = startPosX;
         CurrentPosY = startPosZ;
         Instance = this;
+        useTools = new Tools[3];
     }
     void Start()
     {
         rB = GetComponent<Rigidbody2D>();
         transform.position = new Vector2(CurrentPosX, CurrentPosY);
-        useTools = new List<Tools>();
     }
 
     void Update()
@@ -63,7 +65,17 @@ public class Player : MonoBehaviour
         {
             if (garbage)
             {
-                garbage.DropMaterial(equipTools);
+                if (haveTool)
+                {
+                    garbage.DropMaterial(equipTools);
+                }
+            }
+            else if (obstacle)
+            {
+                if (haveTool)
+                {
+                    
+                }
             }
             else
             {
@@ -142,30 +154,70 @@ public class Player : MonoBehaviour
 
     public void SetTools(Tools tool)
     {
-        useTools.Add(tool);
+        switch (tool.toolType)
+        {
+            case ToolsType.Hammer:
+                useTools[0] = tool;
+                break;
+            case ToolsType.Shovel:
+                useTools[1] = tool;
+                break;
+            case ToolsType.ChainSaw:
+                useTools[2] = tool;
+                break;
+            default:
+                break;
+        }
+        haveTool = tool;
     }
     public void OnClickChangeTools()
     {
         if(equipTools == EquipType.Hammer)
         {
             equipTools = EquipType.Shovel;
+            haveTool = useTools[1];
         }
         else if (equipTools == EquipType.Shovel)
         {
             equipTools = EquipType.Hammer;
+            haveTool = useTools[0];
         }
     }
     public void OnClickCraftHammer()
     {
-
+        ToolsManager.Instance.CreateTools(0);
+        equipTools = EquipType.Hammer;
     }
     public void OnClickCraftShovel()
     {
-
+        ToolsManager.Instance.CreateTools(1);
+        equipTools = EquipType.Shovel;
+    }
+    public void OnClickCraftChainSaw()
+    {
+        ToolsManager.Instance.CreateTools(2);
+        equipTools = EquipType.ChainSaw;
     }
     public void OnClickToTakeApartTool()
     {
-
+        if (equipTools == EquipType.Hammer)
+        {
+            useTools[0] = null;
+            if (haveTool)
+            {
+                haveTool.ToTakeApartTool();
+                equipTools = EquipType.None;
+            }
+        }
+        else if (equipTools == EquipType.Shovel)
+        {
+            useTools[1] = null;
+            if (haveTool)
+            {
+                haveTool.ToTakeApartTool();
+                equipTools = EquipType.None;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -174,6 +226,14 @@ public class Player : MonoBehaviour
         if (garbage)
         {
             this.garbage = garbage;
+        }
+        else
+        {
+            Obstacle obstacle = collision.GetComponent<Obstacle>();
+            if (obstacle)
+            {
+                this.obstacle = obstacle;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -184,6 +244,14 @@ public class Player : MonoBehaviour
             if (garbage == this.garbage)
             {
                 this.garbage = null;
+            }
+        }
+        else
+        {
+            Obstacle obstacle = collision.GetComponent<Obstacle>();
+            if (obstacle)
+            {
+                this.obstacle = null;
             }
         }
     }

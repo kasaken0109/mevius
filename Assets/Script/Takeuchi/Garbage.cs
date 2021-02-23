@@ -19,7 +19,7 @@ public class Garbage : MonoBehaviour
                 {
                     for (int i = 0; i < 5; i++)
                     {
-                        GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[0]);
+                        GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[2]);
                         Material material = instance.GetComponent<Material>();
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
@@ -35,7 +35,7 @@ public class Garbage : MonoBehaviour
                 {
                     for (int i = 0; i < 5; i++)
                     {
-                        GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[1]);
+                        GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[3]);
                         Material material = instance.GetComponent<Material>();
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
