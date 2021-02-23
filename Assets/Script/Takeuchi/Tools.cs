@@ -6,11 +6,14 @@ public enum ToolsType
 {
     Hammer,
     Shovel,
+    ChainSaw,
 }
 public class Tools : MonoBehaviour
 {
     [SerializeField]
     ToolsType tool = ToolsType.Hammer;
+    [SerializeField]
+    public int[] recipe;
     public void ToTakeApartTool()
     {
         GameObject instance;
