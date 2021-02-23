@@ -18,12 +18,16 @@ public class Garbage : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[0]);
+                    Material material = instance.GetComponent<Material>();
+                    material.StartMove(Quaternion.Euler(0, 0, 30 * i));
                 }
                 break;
             case ToolsType.Shovel:
                 for (int i = 0; i < 3; i++)
                 {
                     GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[1]);
+                    Material material = instance.GetComponent<Material>();
+                    material.StartMove(Quaternion.Euler(0, 0, 30 * i));
                 }
                 break;
             default:
