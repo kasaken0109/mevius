@@ -36,11 +36,14 @@ public class Material : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player)
+        if (startMoveTimer <= 0)
         {
-            MaterialManager.Instance.AddMaterial(materialType);
-            Destroy(this.gameObject);
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player)
+            {
+                MaterialManager.Instance.AddMaterial(materialType);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
