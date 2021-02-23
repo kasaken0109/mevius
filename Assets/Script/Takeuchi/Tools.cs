@@ -11,14 +11,19 @@ public enum ToolsType
 public class Tools : MonoBehaviour
 {
     [SerializeField]
-    ToolsType tool = ToolsType.Hammer;
+    public ToolsType toolType = ToolsType.Hammer;
     [SerializeField]
     public int[] recipe;
+    private void Start()
+    {
+        transform.position = Player.Instance.transform.position;
+        Player.Instance.SetTools(this);
+    }
     public void ToTakeApartTool()
     {
         GameObject instance;
         Material material;
-        switch (tool)
+        switch (toolType)
         {
             case ToolsType.Hammer:
                 instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[0]);

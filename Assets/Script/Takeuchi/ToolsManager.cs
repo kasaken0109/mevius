@@ -16,6 +16,7 @@ public class ToolsManager : MonoBehaviour
         if (MaterialManager.Instance.CheckMaterial(AllTools[orderTool].recipe))
         {
             MaterialManager.Instance.UseMaterial(AllTools[orderTool].recipe);
+            Instantiate<Tools>(AllTools[orderTool]).transform.SetParent(Player.Instance.transform);
         }
         else
         {
