@@ -12,12 +12,32 @@ public class Material : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5.0f;
     Vector3 moveDir = Vector3.zero;
+    private bool xxx;
+    private bool zzz;
+    private float stayTime;
+    private float earthPosY;
     void Update()
     {
         if (startMoveTimer > 0)
         {
             startMoveTimer -= Time.deltaTime;
             transform.position += moveDir * moveSpeed * 2 * Time.deltaTime;
+            xxx = true;
+        }
+        else if (xxx && stayTime < 0.08f)
+        {
+            if (!zzz)
+            {
+                transform.position -= new Vector3(0, moveSpeed * 3 * Time.deltaTime);
+                if (transform.position.y <= earthPosY)
+                {
+                    zzz = true;
+                }
+            }
+            else
+            {
+                stayTime += Time.deltaTime;
+            }
         }
         else
         {
@@ -32,11 +52,24 @@ public class Material : MonoBehaviour
         transform.position = createPosition;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, moveDir);
         startMoveTimer = moveTime;
+        earthPosY = createPosition.y - 1;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (startMoveTimer <= 0)
+        if (startMoveTimer <= 0 && zzz)
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player)
+            {
+                MaterialManager.Instance.AddMaterial(materialType);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (startMoveTimer <= 0 && zzz)
         {
             Player player = collision.gameObject.GetComponent<Player>();
             if (player)

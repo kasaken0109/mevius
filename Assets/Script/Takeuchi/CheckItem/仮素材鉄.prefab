@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialType: 0
-  moveTime: 0.8
-  moveSpeed: 2
+  moveTime: 0.5
+  moveSpeed: 2.5
 --- !u!50 &3150436973920055690
 Rigidbody2D:
   serializedVersion: 4

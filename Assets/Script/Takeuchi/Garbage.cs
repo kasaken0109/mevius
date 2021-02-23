@@ -19,7 +19,7 @@ public class Garbage : MonoBehaviour
                     {
                         GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[2]);
                         Material material = instance.GetComponent<Material>();
-                        material.StartMove(transform.position, GetDirection(30 * i));
+                        material.StartMove(transform.position, GetDirection(30 * i-60));
                     }
                     totalDoropNumber--;
                     Debug.Log("上手く取れた");
@@ -36,7 +36,7 @@ public class Garbage : MonoBehaviour
                     {
                         GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[3]);
                         Material material = instance.GetComponent<Material>();
-                        material.StartMove(transform.position, GetDirection(30 * i));
+                        material.StartMove(transform.position, GetDirection(30 * i-60));
                     }
                     totalDoropNumber--;
                     Debug.Log("上手く取れた");
