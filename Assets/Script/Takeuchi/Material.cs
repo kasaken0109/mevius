@@ -28,7 +28,7 @@ public class Material : MonoBehaviour
         {
             if (!zzz)
             {
-                transform.position -= new Vector3(0, moveSpeed * 3 * Time.deltaTime);
+                transform.position -= new Vector3(0, moveSpeed * 2 * Time.deltaTime);
                 if (transform.position.y <= earthPosY)
                 {
                     zzz = true;
