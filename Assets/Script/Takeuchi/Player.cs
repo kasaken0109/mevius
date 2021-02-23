@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
             {
                 if (haveTool)
                 {
-                    
+                    obstacle.BreakObstacle();
                 }
             }
             else
