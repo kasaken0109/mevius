@@ -27,6 +27,10 @@ public class Garbage : MonoBehaviour
                     }
                     totalDoropNumber--;
                 }
+                else
+                {
+                    Debug.Log("上手く取れない");
+                }
                 break;
             case EquipType.Shovel:
                 if (garbageType == 1 && totalDoropNumber > 0)
@@ -38,6 +42,10 @@ public class Garbage : MonoBehaviour
                         material.StartMove(transform.position, GetDirection(30 * i));
                     }
                     totalDoropNumber--;
+                }
+                else
+                {
+                    Debug.Log("上手く取れない");
                 }
                 break;
             default:

@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     Garbage garbage;
     private Rigidbody2D rB = null;
-    private Tools[] haveTools;
     private Tools useTools;
     private enum MoveAngle
     {
@@ -61,7 +60,14 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            garbage.DropMaterial(equipTools);
+            if (garbage)
+            {
+                garbage.DropMaterial(equipTools);
+            }
+            else
+            {
+                Debug.Log("該当なし");
+            }
         }
         //入力があれば移動、
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
@@ -135,7 +141,14 @@ public class Player : MonoBehaviour
 
     public void OnClickChangeTools()
     {
-
+        if(equipTools == EquipType.Hammer)
+        {
+            equipTools = EquipType.Shovel;
+        }
+        else if (equipTools == EquipType.Shovel)
+        {
+            equipTools = EquipType.Hammer;
+        }
     }
     public void OnClickCraftHammer()
     {
@@ -148,5 +161,28 @@ public class Player : MonoBehaviour
     public void OnClickToTakeApartTool()
     {
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Garbage garbage = collision.GetComponent<Garbage>();
+        if (garbage)
+        {
+            this.garbage = garbage;
+        }
+    }
+
+    
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Garbage garbage = collision.GetComponent<Garbage>();
+        if (garbage)
+        {
+            if (garbage == this.garbage)
+            {
+                this.garbage = null;
+            }
+        }
     }
 }
