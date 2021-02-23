@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
     private float maxPosY;
     /// <summary> 主人公の装備状態 </summary>
     [SerializeField] ToolsType equipTools = ToolsType.None;
+    public static Player Instance { get; private set; }
+    [SerializeField]
+    Garbage garbage;
     private enum MoveAngle
     {
         Up,
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
     {
         CurrentPosX = startPosX;
         CurrentPosY = startPosZ;
+        Instance = this;
     }
     void Start()
     {
@@ -110,6 +114,10 @@ public class Player : MonoBehaviour
             }
             transform.position = new Vector2(CurrentPosX, CurrentPosY);
             moveNow = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            garbage.DropMaterial(equipTools);
         }
     }
 
