@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -67,14 +68,17 @@ public class Player : MonoBehaviour
             {
                 if (haveTool)
                 {
-                    garbage.DropMaterial(equipTools);
+                    garbage.DropMaterial(haveTool.toolType);
                 }
             }
             else if (obstacle)
             {
                 if (haveTool)
                 {
-                    obstacle.BreakObstacle();
+                    if (haveTool.toolType == ToolsType.ChainSaw)
+                    {
+                        obstacle.BreakObstacle();
+                    }
                 }
             }
             else
@@ -172,15 +176,43 @@ public class Player : MonoBehaviour
     }
     public void OnClickChangeTools()
     {
-        if(equipTools == EquipType.Hammer)
+        if (haveTool)
         {
-            equipTools = EquipType.Shovel;
-            haveTool = useTools[1];
+            switch (haveTool.toolType)
+            {
+                case ToolsType.Hammer:
+                    if (useTools[1])
+                    {
+                        haveTool = useTools[1];
+                        Debug.Log("持ち替えた");
+                    }
+                    break;
+                case ToolsType.Shovel:
+                    if (useTools[0])
+                    {
+                        haveTool = useTools[0];
+                        Debug.Log("持ち替えた");
+                    }
+                    break;
+                case ToolsType.ChainSaw:
+                    break;
+                default:                    
+                    break;
+            }
+            Debug.Log("０");
         }
-        else if (equipTools == EquipType.Shovel)
+        else
         {
-            equipTools = EquipType.Hammer;
-            haveTool = useTools[0];
+            foreach (var item in useTools)
+            {
+                if (item)
+                {
+                    haveTool = item;
+                    Debug.Log("１");
+                    return;
+                }
+            }
+            Debug.Log("２");
         }
     }
     public void OnClickCraftHammer()
@@ -200,22 +232,22 @@ public class Player : MonoBehaviour
     }
     public void OnClickToTakeApartTool()
     {
-        if (equipTools == EquipType.Hammer)
+        if (haveTool)
         {
-            useTools[0] = null;
-            if (haveTool)
+            switch (haveTool.toolType)
             {
-                haveTool.ToTakeApartTool();
-                equipTools = EquipType.None;
-            }
-        }
-        else if (equipTools == EquipType.Shovel)
-        {
-            useTools[1] = null;
-            if (haveTool)
-            {
-                haveTool.ToTakeApartTool();
-                equipTools = EquipType.None;
+                case ToolsType.Hammer:
+                    useTools[0] = null;
+                    haveTool.ToTakeApartTool();
+                    break;
+                case ToolsType.Shovel:
+                    useTools[1] = null;
+                    haveTool.ToTakeApartTool();
+                    break;
+                case ToolsType.ChainSaw:
+                    break;
+                default:
+                    break;
             }
         }
     }

@@ -8,13 +8,11 @@ public class Garbage : MonoBehaviour
     private int totalDoropNumber = 5;
     [SerializeField]
     private int garbageType = 0;
-    public void DropMaterial(EquipType tool)
+    public void DropMaterial(ToolsType tool)
     {
         switch (tool)
         {
-            case EquipType.None:
-                break;
-            case EquipType.Hammer:
+            case ToolsType.Hammer:
                 if (garbageType == 0 && totalDoropNumber > 0)
                 {
                     for (int i = 0; i < 5; i++)
@@ -30,7 +28,7 @@ public class Garbage : MonoBehaviour
                     Debug.Log("上手く取れない");
                 }
                 break;
-            case EquipType.Shovel:
+            case ToolsType.Shovel:
                 if (garbageType == 1 && totalDoropNumber > 0)
                 {
                     for (int i = 0; i < 5; i++)
