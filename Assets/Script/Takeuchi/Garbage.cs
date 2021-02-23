@@ -19,7 +19,7 @@ public class Garbage : MonoBehaviour
                 {
                     GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[0]);
                     Material material = instance.GetComponent<Material>();
-                    material.StartMove(Quaternion.Euler(0, 0, 30 * i));
+                    material.StartMove(transform.position, GetDirection(30 * i));
                 }
                 break;
             case ToolsType.Shovel:
@@ -27,11 +27,20 @@ public class Garbage : MonoBehaviour
                 {
                     GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[1]);
                     Material material = instance.GetComponent<Material>();
-                    material.StartMove(Quaternion.Euler(0, 0, 30 * i));
+                    material.StartMove(transform.position , GetDirection(30 * i));
                 }
                 break;
             default:
                 break;
         }
+    }
+    Vector3 GetDirection(float angle)
+    {
+        return new Vector3
+        (
+            Mathf.Sin(angle * Mathf.Deg2Rad),
+            Mathf.Cos(angle * Mathf.Deg2Rad),
+            0.0f
+        ).normalized;
     }
 }
