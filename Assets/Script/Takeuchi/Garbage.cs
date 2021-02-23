@@ -8,24 +8,24 @@ public class Garbage : MonoBehaviour
     GameObject[] dropMaterialsPrefab;
     [SerializeField]
     private int totalDoropNumber = 5;
-    public void DropMaterial(ToolsType tool)
+    public void DropMaterial(EquipType tool)
     {
         switch (tool)
         {
-            case ToolsType.None:
+            case EquipType.None:
                 break;
-            case ToolsType.Hammer:
-                for (int i = 0; i < 3; i++)
+            case EquipType.Hammer:
+                for (int i = 0; i < 5; i++)
                 {
-                    GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[0]);
+                    GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[0]);
                     Material material = instance.GetComponent<Material>();
                     material.StartMove(transform.position, GetDirection(30 * i));
                 }
                 break;
-            case ToolsType.Shovel:
-                for (int i = 0; i < 3; i++)
+            case EquipType.Shovel:
+                for (int i = 0; i < 5; i++)
                 {
-                    GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[1]);
+                    GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[1]);
                     Material material = instance.GetComponent<Material>();
                     material.StartMove(transform.position , GetDirection(30 * i));
                 }
