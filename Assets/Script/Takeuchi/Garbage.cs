@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Garbage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    GameObject[] dropMaterialsPrefab;
+    [SerializeField]
+    private int totalDoropNumber = 5;
+    public void DropMaterial(ToolsType tool)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        switch (tool)
+        {
+            case ToolsType.None:
+                break;
+            case ToolsType.Hammer:
+                for (int i = 0; i < 3; i++)
+                {
+                    GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[0]);
+                }
+                break;
+            case ToolsType.Shovel:
+                for (int i = 0; i < 3; i++)
+                {
+                    GameObject instance = Instantiate<GameObject>(dropMaterialsPrefab[1]);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
