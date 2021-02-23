@@ -25,7 +25,28 @@ public class MaterialManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("素材不足");
+            Debug.Log("エラー");
         }
+    }
+    public void UseMaterial(int[] recipe)
+    {
+        for (int i = 0; i < recipe.Length; i++)
+        {
+            if (haveMaterials[i] >= recipe[i])
+            {
+                haveMaterials[i] -= recipe[i];
+            }
+        }
+    }
+    public bool CheckMaterial(int[] recipe)
+    {
+        for (int i = 0; i < recipe.Length; i++)
+        {
+            if(haveMaterials[i] < recipe[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
