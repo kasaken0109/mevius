@@ -5,8 +5,6 @@ using UnityEngine;
 public class Garbage : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] dropMaterialsPrefab;
-    [SerializeField]
     private int totalDoropNumber = 5;
     [SerializeField]
     private int garbageType = 0;
