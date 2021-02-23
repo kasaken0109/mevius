@@ -13,6 +13,8 @@ public class MapBase : MonoBehaviour
     /// <summary>確認用仮パネルデータ
     [SerializeField] GameObject panel = null;
     public static MapBase Instance { get; private set; }//マップ情報の取得を可能にする
+    /// <summary>マップの全マス目情報</summary>
+    public List<SquaresData> MapData { get; private set; }
     /// <summary>
     /// マス目のデータ
     /// </summary>
@@ -72,8 +74,6 @@ public class MapBase : MonoBehaviour
             Item = null;
         }
     }
-    /// <summary>マップの全マス目情報</summary>
-    public List<SquaresData> MapData { get; private set; }
     private void Awake()
     {
         if (!Instance)
