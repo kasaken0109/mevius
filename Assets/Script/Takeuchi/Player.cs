@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 装備状態分け
 /// </summary>
-public enum ToolsType
+public enum EquipType
 {
     None,
     Hammer,
@@ -29,10 +29,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float maxPosY;
     /// <summary> 主人公の装備状態 </summary>
-    [SerializeField] ToolsType equipTools = ToolsType.None;
+    [SerializeField] EquipType equipTools = EquipType.None;
     public static Player Instance { get; private set; }
     [SerializeField]
     Garbage garbage;
+    private Rigidbody2D rB = null;
     private enum MoveAngle
     {
         Up,
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        rB = GetComponent<Rigidbody2D>();
         transform.position = new Vector2(CurrentPosX, CurrentPosY);
     }
 
@@ -112,9 +114,17 @@ public class Player : MonoBehaviour
                 default:
                     break;
             }
-            transform.position = new Vector2(CurrentPosX, CurrentPosY);
+            //transform.position = new Vector2(CurrentPosX, CurrentPosY);
+            //rB.velocity = new Vector2(CurrentPosX, CurrentPosY);
             moveNow = false;
         }
+        else
+        {
+            //rB.velocity = new Vector2(0, 0);
+            CurrentPosX = 0;
+            CurrentPosY = 0;
+        }
+        rB.velocity = new Vector2(CurrentPosX, CurrentPosY);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             garbage.DropMaterial(equipTools);

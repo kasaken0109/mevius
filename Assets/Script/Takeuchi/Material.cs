@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Material : MonoBehaviour
 {
-    
+    [SerializeField]
+    private int materialType = 0;
+    [SerializeField]
+    private float moveTime = 0.5f;
     private float startMoveTimer;
     [SerializeField]
     private float moveSpeed = 5.0f;
@@ -28,7 +31,7 @@ public class Material : MonoBehaviour
         this.moveDir = moveDir;
         transform.position = createPosition;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, moveDir);
-        startMoveTimer = 0.2f;
+        startMoveTimer = moveTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
