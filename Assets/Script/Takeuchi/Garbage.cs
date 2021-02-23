@@ -8,6 +8,8 @@ public class Garbage : MonoBehaviour
     GameObject[] dropMaterialsPrefab;
     [SerializeField]
     private int totalDoropNumber = 5;
+    [SerializeField]
+    private int garbageType = 0;
     public void DropMaterial(EquipType tool)
     {
         switch (tool)
@@ -15,19 +17,25 @@ public class Garbage : MonoBehaviour
             case EquipType.None:
                 break;
             case EquipType.Hammer:
-                for (int i = 0; i < 5; i++)
+                if (garbageType == 0)
                 {
-                    GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[0]);
-                    Material material = instance.GetComponent<Material>();
-                    material.StartMove(transform.position, GetDirection(30 * i));
+                    for (int i = 0; i < 5; i++)
+                    {
+                        GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[0]);
+                        Material material = instance.GetComponent<Material>();
+                        material.StartMove(transform.position, GetDirection(30 * i));
+                    }
                 }
                 break;
             case EquipType.Shovel:
-                for (int i = 0; i < 5; i++)
+                if (garbageType == 1)
                 {
-                    GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[1]);
-                    Material material = instance.GetComponent<Material>();
-                    material.StartMove(transform.position , GetDirection(30 * i));
+                    for (int i = 0; i < 5; i++)
+                    {
+                        GameObject instance = Instantiate<GameObject>(MaterialManager.Instance.dropMaterialsPrefab[1]);
+                        Material material = instance.GetComponent<Material>();
+                        material.StartMove(transform.position, GetDirection(30 * i));
+                    }
                 }
                 break;
             default:

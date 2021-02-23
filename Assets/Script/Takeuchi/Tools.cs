@@ -36,6 +36,7 @@ public class Tools : MonoBehaviour
             default:
                 break;
         }
+        Destroy(this.gameObject);
     }
     Vector3 GetDirection(float angle)
     {
