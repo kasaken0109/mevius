@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class IinventoryManager : MonoBehaviour
 {
-    List<ItemBase> haveItems;
+    List<ItemBaseData> haveItems;
+    [SerializeField] InventoryGrid inventory;
+    [SerializeField] ItemBaseData item;
     private void Awake()
     {
-        haveItems = new List<ItemBase>();
+        haveItems = new List<ItemBaseData>();
     }
 
-    public void AddItem(ItemBase item)
+    public void AddItem(ItemBaseData item)
     {
         haveItems.Add(item);
     }
 
+    public void OnClickGetItem()
+    {
+        inventory.AddItem(item);
+    }
 }
