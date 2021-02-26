@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ItemBaseData Item { get; private set; }
+    [SerializeField] Image itemImage;
 
-    // Update is called once per frame
-    void Update()
+    public void SetItem(ItemBaseData item)
     {
-        
+        Item = item;
+        if (Item)
+        {
+            itemImage.sprite = item.ItemImage;
+        }
     }
 }
