@@ -52,6 +52,13 @@ public class ItemSlot : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
         {
             Destroy(dragItem);
         }
-        IinventoryManager.Instance.PutBackItem();
+        if (IinventoryManager.Instance.GetRecycle(eventData))
+        {
+            IinventoryManager.Instance.RecycleItem();
+        }
+        else
+        {
+            IinventoryManager.Instance.PutBackItem();
+        }
     }
 }
