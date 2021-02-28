@@ -9,6 +9,7 @@ public class IinventoryManager : MonoBehaviour
     public static IinventoryManager Instance { get; private set; }
     [SerializeField] InventoryGrid inventory;
     [SerializeField] ItemBaseData item;
+    [SerializeField] ItemBaseData[] allItems;
     [SerializeField] RecycleMachine recycleMachine;
     public ItemBaseData HaveItem { get; private set; }
     public bool recycleMode;
@@ -51,5 +52,15 @@ public class IinventoryManager : MonoBehaviour
         EventSystem.current.RaycastAll(eventData, results);
         var result = results.Where(x => x.gameObject.CompareTag("Recycle")).FirstOrDefault();
         return result.gameObject;
+    }
+
+    public void ItemGet(int ID)
+    {
+        inventory.AddItem(allItems[ID]);
+    }
+
+    public ItemBaseData GetItem(int ID)
+    {
+        return allItems[ID];
     }
 }

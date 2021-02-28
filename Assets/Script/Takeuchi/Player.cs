@@ -40,6 +40,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D rB = null;
     private Tools[] useTools;
     private Tools haveTool;
+    [SerializeField]
+    GameObject message;
+    [SerializeField]
+    GameObject[] plyerUI;
     private enum MoveAngle
     {
         Up,
@@ -60,6 +64,8 @@ public class Player : MonoBehaviour
     {
         rB = GetComponent<Rigidbody2D>();
         transform.position = new Vector2(CurrentPosX, CurrentPosY);
+        message.SetActive(false);
+        OnClickCancel();
     }
     private void Update()
     {
@@ -258,15 +264,13 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void OnClickCraftHammer()
+    public void OnClickRecycle()
     {
-        ToolsManager.Instance.CreateTools(0);
-        equipTools = EquipType.Hammer;
+        plyerUI[0].SetActive(true);
     }
-    public void OnClickCraftShovel()
+    public void OnClickCancel()
     {
-        ToolsManager.Instance.CreateTools(1);
-        equipTools = EquipType.Shovel;
+        plyerUI.ToList().ForEach(i => i.SetActive(false));
     }
     public void OnClickCraftChainSaw()
     {
@@ -301,6 +305,8 @@ public class Player : MonoBehaviour
         if (garbage)
         {
             this.garbage = garbage;
+            message.SetActive(true);
+            message.GetComponent<PlayerMessage>().OpenMessage(1);
         }
         else
         {
@@ -308,6 +314,15 @@ public class Player : MonoBehaviour
             if (obstacle)
             {
                 this.obstacle = obstacle;
+            }
+            else
+            {
+                RecycleMachine recycle = collision.GetComponent<RecycleMachine>();
+                if (recycle)
+                {
+                    message.SetActive(true);
+                    message.GetComponent<PlayerMessage>().OpenMessage(0);
+                }
             }
         }
     }
@@ -320,6 +335,7 @@ public class Player : MonoBehaviour
             {
                 this.garbage = null;
             }
+            message.SetActive(false);
         }
         else
         {
@@ -327,6 +343,14 @@ public class Player : MonoBehaviour
             if (obstacle)
             {
                 this.obstacle = null;
+            }
+            else
+            {
+                RecycleMachine recycle = collision.GetComponent<RecycleMachine>();
+                if (recycle)
+                {
+                    message.SetActive(false);
+                }
             }
         }
     }
