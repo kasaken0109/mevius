@@ -60,6 +60,13 @@ public class IinventoryManager : MonoBehaviour
         var result = results.Where(x => x.gameObject.CompareTag("Obstacle")).FirstOrDefault();
         return result.gameObject;
     }
+    public GameObject GetRecycleT(PointerEventData eventData)
+    {
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        var result = results.Where(x => x.gameObject.CompareTag("TimeMachine")).FirstOrDefault();
+        return result.gameObject;
+    }
     public void ItemGet(int ID)
     {
         if (MaterialManager.Instance.CheckMaterial(allItems[ID].UseMaterials))

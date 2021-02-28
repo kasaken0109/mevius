@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e665ff4e03d9242bcfb41995568990, type: 3}
   m_Name: Hammer
   m_EditorClassIdentifier: 
-  ItemName: 
-  ItemImage: {fileID: 0}
-  HaveMaterials: 
-  UseMaterials: 
+  ItemName: "\u30D4\u30C3\u30B1\u30EB"
+  ItemImage: {fileID: 21300000, guid: 110b95c4a863af94d91315c8737bacfa, type: 3}
+  HaveMaterials: 0000000001000000000000000100000000000000
+  UseMaterials: 0000000003000000000000000200000000000000
+  type: 3

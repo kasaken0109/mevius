@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] EquipType equipTools = EquipType.None;
     public static Player Instance { get; private set; }
     Garbage garbage;
+    public TimeMachine timeMachine;
     public Obstacle obstacle;
     public CreateMachine create;
     private Rigidbody2D rB = null;
@@ -70,31 +71,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    if (garbage)
-        //    {
-        //        if (haveTool)
-        //        {
-        //            garbage.DropMaterial(haveTool.toolType);
-        //        }
-        //    }
-        //    else if (obstacle)
-        //    {
-        //        if (haveTool)
-        //        {
-        //            if (haveTool.toolType == ToolsType.ChainSaw)
-        //            {
-        //                obstacle.BreakObstacle();
-        //                Debug.Log("木を切り倒した");
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("該当なし");
-        //    }
-        //}
         if (moveNow)
         {
             CurrentPosX = transform.position.x;
@@ -273,6 +249,10 @@ public class Player : MonoBehaviour
     {
         plyerUI[1].SetActive(true);
     }
+    public void OnClickTimeMachine()
+    {
+        plyerUI[3].SetActive(true);
+    }
     public void OnClickCancel()
     {
         plyerUI.ToList().ForEach(i => i.SetActive(false));
@@ -349,6 +329,16 @@ public class Player : MonoBehaviour
                         message.SetActive(true);
                         message.GetComponent<PlayerMessage>().OpenMessage(2);                        
                     }
+                    else
+                    {
+                        TimeMachine timeMachine = collision.GetComponent<TimeMachine>();
+                        if (timeMachine)
+                        {
+                            this.timeMachine = timeMachine;
+                            message.SetActive(true);
+                            message.GetComponent<PlayerMessage>().OpenMessage(4);
+                        }
+                    }
                 }
             }
         }
@@ -386,6 +376,15 @@ public class Player : MonoBehaviour
                     {
                         this.create = null;
                         message.SetActive(false);
+                    }
+                    else
+                    {
+                        TimeMachine timeMachine = collision.GetComponent<TimeMachine>();
+                        if (timeMachine)
+                        {
+                            this.timeMachine = null;
+                            message.SetActive(false);
+                        }
                     }
                 }
             }

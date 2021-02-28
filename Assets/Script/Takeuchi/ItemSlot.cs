@@ -65,6 +65,18 @@ public class ItemSlot : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
             Item = null;
             IinventoryManager.Instance.PutBackItem();
         }
+        else if (IinventoryManager.Instance.GetRecycleT(eventData))
+        {
+            if (Player.Instance.timeMachine)
+            {
+                if (Item.type == CommandType.GetTimeParts)
+                {
+                    Player.Instance.timeMachine.Message();
+                }
+            }
+            Item = null;
+            IinventoryManager.Instance.PutBackItem();
+        }
         else
         {
             Item = null;

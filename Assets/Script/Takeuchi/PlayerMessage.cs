@@ -19,7 +19,7 @@ public class PlayerMessage : MonoBehaviour
         rect.position = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
     }
     /// <summary>
-    /// 指定したメッセージ表示、０：リサイクル、１：拾う、２：作成、３：調べる
+    /// 指定したメッセージ表示、０：リサイクル、１：拾う、２：作成、３：調べる、４：タイムマシン
     /// </summary>
     /// <param name="ID"></param>
     public void OpenMessage(int ID)
@@ -37,6 +37,9 @@ public class PlayerMessage : MonoBehaviour
                 messages[ID].SetActive(true);
                 break;
             case 3:
+                messages[ID].SetActive(true);
+                break;
+            case 4:
                 messages[ID].SetActive(true);
                 break;
             default:
