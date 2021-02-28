@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class IinventoryManager : MonoBehaviour
 {
-    List<ItemBaseData> haveItems;
+    public static IinventoryManager Instance { get; private set; }
     [SerializeField] InventoryGrid inventory;
     [SerializeField] ItemBaseData item;
+    public ItemBaseData HaveItem { get; private set; } 
     private void Awake()
     {
-        haveItems = new List<ItemBaseData>();
+        Instance = this;
     }
 
-    public void AddItem(ItemBaseData item)
-    {
-        haveItems.Add(item);
-    }
 
     public void OnClickGetItem()
     {
         inventory.AddItem(item);
+    }
+
+    public void PickUpItem(ItemBaseData item)
+    {
+        if (!HaveItem)
+        {
+            HaveItem = item;
+        }
+    }
+    public void PutBackItem()
+    {
+        if (HaveItem)
+        {
+            inventory.AddItem(HaveItem);
+            HaveItem = null;
+        }
     }
 }
