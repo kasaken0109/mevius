@@ -62,7 +62,15 @@ public class IinventoryManager : MonoBehaviour
     }
     public void ItemGet(int ID)
     {
-        inventory.AddItem(allItems[ID]);
+        if (MaterialManager.Instance.CheckMaterial(allItems[ID].UseMaterials))
+        {
+            MaterialManager.Instance.UseMaterial(allItems[ID].UseMaterials);
+            inventory.AddItem(allItems[ID]);
+            if (Player.Instance.create)
+            {
+                Player.Instance.create.ViweCreat();
+            }
+        }
     }
 
     public ItemBaseData GetItem(int ID)

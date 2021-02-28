@@ -8,6 +8,8 @@ public enum CommandType
     GetTool,
     GetPetBottle,
     GetToolHammer,
+    GetTimePiece,
+    GetTimeParts,
 }
 public class ItemGetCommand : MonoBehaviour
 {
@@ -29,6 +31,12 @@ public class ItemGetCommand : MonoBehaviour
                 break;
             case CommandType.GetToolHammer:
                 IinventoryManager.Instance.ItemGet(3);
+                break;
+            case CommandType.GetTimePiece:
+                IinventoryManager.Instance.ItemGet(4);
+                break;
+            case CommandType.GetTimeParts:
+                IinventoryManager.Instance.ItemGet(5);
                 break;
             default:
                 break;

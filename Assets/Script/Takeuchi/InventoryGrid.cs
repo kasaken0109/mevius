@@ -41,6 +41,10 @@ public class InventoryGrid : MonoBehaviour
     }
     public void AddItem(ItemBaseData item)
     {
-        ItemSlots.Where(i => i.Item == null).FirstOrDefault().SetItem(item);
+        ItemSlot slot = ItemSlots.Where(i => i.Item == null).FirstOrDefault();
+        if (slot)
+        {
+            slot.SetItem(item);
+        }
     }
 }

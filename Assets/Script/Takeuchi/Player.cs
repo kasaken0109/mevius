@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
     Garbage garbage;
     public Obstacle obstacle;
+    public CreateMachine create;
     private Rigidbody2D rB = null;
     private Tools[] useTools;
     private Tools haveTool;
@@ -279,6 +280,10 @@ public class Player : MonoBehaviour
     public void OnClickCraft()
     {
         plyerUI[2].SetActive(true);
+        if (create)
+        {
+            create.ViweCreat();
+        }
     }
     public void OnClickObstacle()
     {
@@ -340,9 +345,9 @@ public class Player : MonoBehaviour
                     CreateMachine create = collision.GetComponent<CreateMachine>();
                     if (create)
                     {
+                        this.create = create;
                         message.SetActive(true);
-                        message.GetComponent<PlayerMessage>().OpenMessage(2);
-                        create.ViweCreat();
+                        message.GetComponent<PlayerMessage>().OpenMessage(2);                        
                     }
                 }
             }
@@ -379,6 +384,7 @@ public class Player : MonoBehaviour
                     CreateMachine create = collision.GetComponent<CreateMachine>();
                     if (create)
                     {
+                        this.create = null;
                         message.SetActive(false);
                     }
                 }

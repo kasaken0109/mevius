@@ -24,4 +24,8 @@ public class Obstacle : MonoBehaviour
     {
         ObstacleObject.SetActive(true);
     }
+    public void Close()
+    {
+        ObstacleObject.SetActive(false);
+    }
 }
