@@ -53,7 +53,13 @@ public class IinventoryManager : MonoBehaviour
         var result = results.Where(x => x.gameObject.CompareTag("Recycle")).FirstOrDefault();
         return result.gameObject;
     }
-
+    public GameObject GetRecycleO(PointerEventData eventData)
+    {
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        var result = results.Where(x => x.gameObject.CompareTag("Obstacle")).FirstOrDefault();
+        return result.gameObject;
+    }
     public void ItemGet(int ID)
     {
         inventory.AddItem(allItems[ID]);

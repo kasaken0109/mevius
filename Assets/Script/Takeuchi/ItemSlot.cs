@@ -47,18 +47,29 @@ public class ItemSlot : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
     }
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        Item = null;
         if (dragItem)
         {
             Destroy(dragItem);
         }
         if (IinventoryManager.Instance.GetRecycle(eventData))
         {
+            Item = null;
             IinventoryManager.Instance.RecycleItem();
+        }
+        else if(IinventoryManager.Instance.GetRecycleO(eventData))
+        {
+            if (Player.Instance.obstacle)
+            {
+                Player.Instance.obstacle.BreakObstacle(Item.type);
+            }
+            Item = null;
+            IinventoryManager.Instance.PutBackItem();
         }
         else
         {
+            Item = null;
             IinventoryManager.Instance.PutBackItem();
         }
+        
     }
 }

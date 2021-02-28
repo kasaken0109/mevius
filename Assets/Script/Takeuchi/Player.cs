@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] EquipType equipTools = EquipType.None;
     public static Player Instance { get; private set; }
     Garbage garbage;
-    Obstacle obstacle;
+    public Obstacle obstacle;
     private Rigidbody2D rB = null;
     private Tools[] useTools;
     private Tools haveTool;
@@ -69,31 +69,31 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (garbage)
-            {
-                if (haveTool)
-                {
-                    garbage.DropMaterial(haveTool.toolType);
-                }
-            }
-            else if (obstacle)
-            {
-                if (haveTool)
-                {
-                    if (haveTool.toolType == ToolsType.ChainSaw)
-                    {
-                        obstacle.BreakObstacle();
-                        Debug.Log("木を切り倒した");
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log("該当なし");
-            }
-        }
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //    if (garbage)
+        //    {
+        //        if (haveTool)
+        //        {
+        //            garbage.DropMaterial(haveTool.toolType);
+        //        }
+        //    }
+        //    else if (obstacle)
+        //    {
+        //        if (haveTool)
+        //        {
+        //            if (haveTool.toolType == ToolsType.ChainSaw)
+        //            {
+        //                obstacle.BreakObstacle();
+        //                Debug.Log("木を切り倒した");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("該当なし");
+        //    }
+        //}
         if (moveNow)
         {
             CurrentPosX = transform.position.x;
@@ -280,6 +280,13 @@ public class Player : MonoBehaviour
     {
         plyerUI[2].SetActive(true);
     }
+    public void OnClickObstacle()
+    {
+        if (obstacle)
+        {
+            obstacle.Open();
+        }
+    }
     public void OnClickToTakeApartTool()
     {
         if (haveTool)
@@ -317,6 +324,8 @@ public class Player : MonoBehaviour
             if (obstacle)
             {
                 this.obstacle = obstacle;
+                message.SetActive(true);
+                message.GetComponent<PlayerMessage>().OpenMessage(3);
             }
             else
             {
@@ -325,6 +334,16 @@ public class Player : MonoBehaviour
                 {
                     message.SetActive(true);
                     message.GetComponent<PlayerMessage>().OpenMessage(0);
+                }
+                else
+                {
+                    CreateMachine create = collision.GetComponent<CreateMachine>();
+                    if (create)
+                    {
+                        message.SetActive(true);
+                        message.GetComponent<PlayerMessage>().OpenMessage(2);
+                        create.ViweCreat();
+                    }
                 }
             }
         }
@@ -346,6 +365,7 @@ public class Player : MonoBehaviour
             if (obstacle)
             {
                 this.obstacle = null;
+                message.SetActive(false);
             }
             else
             {
@@ -353,6 +373,14 @@ public class Player : MonoBehaviour
                 if (recycle)
                 {
                     message.SetActive(false);
+                }
+                else
+                {
+                    CreateMachine create = collision.GetComponent<CreateMachine>();
+                    if (create)
+                    {
+                        message.SetActive(false);
+                    }
                 }
             }
         }

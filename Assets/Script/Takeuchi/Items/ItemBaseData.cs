@@ -9,5 +9,7 @@ public class ItemBaseData : ScriptableObject
     public string ItemName;
     public Sprite ItemImage;
     public int[] HaveMaterials;
+    public int[] UseMaterials;
+    public CommandType type;
 }
 
