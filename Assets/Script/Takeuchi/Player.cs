@@ -268,14 +268,17 @@ public class Player : MonoBehaviour
     {
         plyerUI[0].SetActive(true);
     }
+    public void OnClickPickUp()
+    {
+        plyerUI[1].SetActive(true);
+    }
     public void OnClickCancel()
     {
         plyerUI.ToList().ForEach(i => i.SetActive(false));
     }
-    public void OnClickCraftChainSaw()
+    public void OnClickCraft()
     {
-        ToolsManager.Instance.CreateTools(2);
-        equipTools = EquipType.ChainSaw;
+        plyerUI[2].SetActive(true);
     }
     public void OnClickToTakeApartTool()
     {
