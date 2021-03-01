@@ -14,7 +14,7 @@ public class ItemSlot : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDragH
     Transform canvasTransform;
     private void Start()
     {
-        canvasTransform = GameObject.Find("Canvas").transform;
+        canvasTransform = GameObject.Find("Canvas (1)").transform;
     }
     public void SetItem(ItemBaseData item)
     {

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class TimeMachine : MonoBehaviour
 {
-   public void Message()
+    [SerializeField]
+    GameObject message;
+    private void Start()
     {
+        message.SetActive(false);
+    }
+    public void Message()
+    {
+        message.SetActive(true);
         Debug.Log("クリア");
     }
 }

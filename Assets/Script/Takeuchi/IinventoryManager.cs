@@ -15,7 +15,16 @@ public class IinventoryManager : MonoBehaviour
     public bool recycleMode;
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void OnClickGetItem()
@@ -42,6 +51,10 @@ public class IinventoryManager : MonoBehaviour
     {
         if (HaveItem)
         {
+            if (!recycleMachine)
+            {
+                recycleMachine = GameObject.Find("再生機").GetComponent<RecycleMachine>();
+            }
             recycleMachine.DropMaterial(HaveItem.HaveMaterials);
             HaveItem = null;
         }

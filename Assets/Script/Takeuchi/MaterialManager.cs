@@ -11,7 +11,16 @@ public class MaterialManager : MonoBehaviour
     private int[] haveMaterials;
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
     public void AddMaterial(int materialType)
     {

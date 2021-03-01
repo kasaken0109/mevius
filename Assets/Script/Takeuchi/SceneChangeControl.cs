@@ -7,16 +7,7 @@ public class SceneChangeControl : MonoBehaviour
     static SceneChangeControl Instance;
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Instance = this;
     }
     public static void SceneChange(int i)
     {
