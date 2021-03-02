@@ -17,7 +17,7 @@ public class PlayerAction : MonoBehaviour
     int maxJumpCount = 2;
     int jumpCount = 0;
     bool directionLR;
-    bool chang;
+    bool directionChange;
     bool onGround;
     void Start()
     {
@@ -54,43 +54,42 @@ public class PlayerAction : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            
-                Vector2 dir = Vector2.zero;
-                if (Input.GetAxisRaw("Horizontal") > 0)
-                {
-                    dir = Vector2.right * moveSpeed;
-                    if (!directionLR)
-                    {
-                        directionLR = true;
-                        chang = true;
-                    }
-                }
-                else if (Input.GetAxisRaw("Horizontal") < 0)
-                {
-                    dir = Vector2.right * -moveSpeed;
-                    if (directionLR)
-                    {
-                        directionLR = false;
-                        chang = true;
-                    }
-                }
-                dir.y = m_rb.velocity.y;
-                m_rb.velocity = dir;
-        }
-        if (chang)
-        {
-            if (directionLR)
+            Vector2 dir = Vector2.zero;
+            if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                dir = Vector2.right * moveSpeed;
+                if (!directionLR)
+                {
+                    directionLR = true;
+                    directionChange = true;
+                }
             }
-            else
+            else if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                dir = Vector2.right * -moveSpeed;
+                if (directionLR)
+                {
+                    directionLR = false;
+                    directionChange = true;
+                }
             }
-            chang = false;
+            dir.y = m_rb.velocity.y;
+            m_rb.velocity = dir;
+            if (directionChange)
+            {
+                if (directionLR)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                directionChange = false;
+            }
         }
     }
 }
