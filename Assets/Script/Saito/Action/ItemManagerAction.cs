@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class ItemManagerAction : MonoBehaviour
 {
+    /// <summary>現在の缶の所持数</summary>
     public float m_kanNum;
     public float m_kanMaxNum = 3;
+    /// <summary>現在のペットボトルの所持数</summary>
     public float m_petNum;
     public float m_petMaxNum = 3;
     public Slider m_kanGauge = null;
