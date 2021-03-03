@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class ItemAction : MonoBehaviour
 {
     [SerializeField] GameObject m_player;
     Rigidbody2D m_rb;
@@ -34,7 +34,9 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log(this.type.ToString());
+            ItemManagerAction itemManager = FindObjectOfType<ItemManagerAction>();
+            itemManager.GetItem(this.type);
+            Destroy(this.gameObject);
         }
     }
 }

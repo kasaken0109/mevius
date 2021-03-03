@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ItemManagerAction : MonoBehaviour
 {
-    void Start()
+    [SerializeField] float m_kanGauge;
+    [SerializeField] float m_petGauge;
+    
+    public void GetItem(ItemAction.Materal materal)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (materal == ItemAction.Materal.Kan)
+        {
+            m_kanGauge++;
+        }
+        if (materal == ItemAction.Materal.Petbottle)
+        {
+            m_petGauge++;
+        }
     }
 }
