@@ -19,6 +19,9 @@ public class PlayerAction : MonoBehaviour
     bool directionLR;
     bool directionChange;
     bool onGround;
+    bool firstPush;
+    bool dash;
+    float pushTimer = 0.3f;
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -51,6 +54,44 @@ public class PlayerAction : MonoBehaviour
                 jumpCount--;
             }
         }
+        if (!dash)
+        {
+            if (Input.GetButtonDown("Horizontal"))
+            {
+                if (!firstPush)
+                {
+                    firstPush = true;
+                    pushTimer = 0.3f;
+                }
+                else
+                {
+                    dash = true;
+                }
+            }
+            else if (firstPush)
+            {
+                if (pushTimer > 0)
+                {
+                    pushTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    firstPush = false;
+                }
+            }
+        }
+        if (directionChange)
+        {
+            if (directionLR)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            directionChange = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -60,7 +101,14 @@ public class PlayerAction : MonoBehaviour
             Vector2 dir = Vector2.zero;
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                dir = Vector2.right * moveSpeed;
+                if (dash)
+                {
+                    dir = Vector2.right * moveSpeed * 2f;
+                }
+                else
+                {
+                    dir = Vector2.right * moveSpeed;
+                }
                 if (!directionLR)
                 {
                     directionLR = true;
@@ -69,7 +117,14 @@ public class PlayerAction : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                dir = Vector2.right * -moveSpeed;
+                if (dash)
+                {
+                    dir = Vector2.right * -moveSpeed * 2f;
+                }
+                else
+                {
+                    dir = Vector2.right * -moveSpeed;
+                }
                 if (directionLR)
                 {
                     directionLR = false;
@@ -78,18 +133,11 @@ public class PlayerAction : MonoBehaviour
             }
             dir.y = m_rb.velocity.y;
             m_rb.velocity = dir;
-            if (directionChange)
-            {
-                if (directionLR)
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                }
-                else
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
-                directionChange = false;
-            }
+        }
+        else if(dash)
+        {
+            dash = false;           
+            firstPush = false;
         }
     }
 }
