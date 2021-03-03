@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.15447235, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1180,8 +1180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_player: {fileID: 1826841954}
-  m_maxSpeed: 2
-  m_movePower: 10
+  itemManager: {fileID: 1300281705}
   type: 1
 --- !u!212 &1103397237
 SpriteRenderer:
@@ -1282,7 +1281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240.8, y: -38.2}
+  m_AnchoredPosition: {x: 240.8, y: -72.69}
   m_SizeDelta: {x: 410.7, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1135891245
@@ -1552,8 +1551,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5412057b69ab0b4ba090dda7a4d992b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_kanGauge: 0
-  m_petGauge: 0
+  m_kanNum: 0
+  m_kanMaxNum: 3
+  m_petNum: 0
+  m_petMaxNum: 3
+  m_kanGauge: {fileID: 251393630}
+  m_petGauge: {fileID: 1135891245}
 --- !u!4 &1300281706
 Transform:
   m_ObjectHideFlags: 0
@@ -1810,8 +1813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_player: {fileID: 1826841954}
-  m_maxSpeed: 2
-  m_movePower: 10
+  itemManager: {fileID: 1300281705}
   type: 0
 --- !u!1 &1686220023
 GameObject:

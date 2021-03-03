@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class ItemAction : MonoBehaviour
 {
     [SerializeField] GameObject m_player;
     Rigidbody2D m_rb;
-    [SerializeField] float m_maxSpeed = 2f;
-    [SerializeField] float m_movePower = 10f;
-
+    [SerializeField] ItemManagerAction itemManager;
     public enum Materal
     {
         Kan,
@@ -18,6 +17,7 @@ public class ItemAction : MonoBehaviour
 
     private void Start()
     {
+        
         m_rb = GetComponent<Rigidbody2D>();
     }
 
@@ -34,9 +34,35 @@ public class ItemAction : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            ItemManagerAction itemManager = FindObjectOfType<ItemManagerAction>();
-            itemManager.GetItem(this.type);
+            if (this.type == Materal.Kan)
+            {
+                ItemManagerAction.Instance.m_kanNum++;
+            }
+            else if (this.type == Materal.Petbottle)
+            {
+                ItemManagerAction.Instance.m_petNum++;
+            }
+            GetItem();
             Destroy(this.gameObject);
         }
+    }
+    public void GetItem()
+    {
+        DOTween.To(() => ItemManagerAction.Instance.m_kanGauge.value,
+        num =>
+        {
+            ItemManagerAction.Instance.m_kanGauge.value = num;
+        },
+        (float)ItemManagerAction.Instance.m_kanNum / ItemManagerAction.Instance.m_kanMaxNum,
+        1f);
+
+        DOTween.To(() => ItemManagerAction.Instance.m_petGauge.value,
+        num =>
+        {
+            ItemManagerAction.Instance.m_petGauge.value = num;
+        },
+        (float)ItemManagerAction.Instance.m_petNum / ItemManagerAction.Instance.m_petMaxNum,
+        1f);
+
     }
 }

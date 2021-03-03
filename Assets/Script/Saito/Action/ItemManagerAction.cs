@@ -1,21 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class ItemManagerAction : MonoBehaviour
 {
-    [SerializeField] float m_kanGauge;
-    [SerializeField] float m_petGauge;
-    
-    public void GetItem(ItemAction.Materal materal)
+    public float m_kanNum;
+    public float m_kanMaxNum = 3;
+    public float m_petNum;
+    public float m_petMaxNum = 3;
+    public Slider m_kanGauge = null;
+    public Slider m_petGauge = null;
+    public static ItemManagerAction Instance { get; private set; }
+    private void Start()
     {
-        if (materal == ItemAction.Materal.Kan)
-        {
-            m_kanGauge++;
-        }
-        if (materal == ItemAction.Materal.Petbottle)
-        {
-            m_petGauge++;
-        }
+        Instance = this;
     }
 }
