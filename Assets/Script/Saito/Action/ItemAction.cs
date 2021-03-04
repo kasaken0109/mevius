@@ -17,11 +17,10 @@ public class ItemAction : MonoBehaviour
 
     private void Start()
     {
-        
+
         m_rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButton("Fire1"))
@@ -34,11 +33,11 @@ public class ItemAction : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (this.type == Materal.Kan)
+            if (this.type == Materal.Kan && ItemManagerAction.Instance.m_kanNum < ItemManagerAction.Instance.m_kanMaxNum)
             {
                 ItemManagerAction.Instance.m_kanNum++;
             }
-            else if (this.type == Materal.Petbottle)
+            else if (this.type == Materal.Petbottle && ItemManagerAction.Instance.m_petNum < ItemManagerAction.Instance.m_petMaxNum)
             {
                 ItemManagerAction.Instance.m_petNum++;
             }
@@ -49,20 +48,13 @@ public class ItemAction : MonoBehaviour
     public void GetItem()
     {
         DOTween.To(() => ItemManagerAction.Instance.m_kanGauge.value,
-        num =>
-        {
-            ItemManagerAction.Instance.m_kanGauge.value = num;
-        },
-        (float)ItemManagerAction.Instance.m_kanNum / ItemManagerAction.Instance.m_kanMaxNum,
-        1f);
+                    num => ItemManagerAction.Instance.m_kanGauge.value = num,
+                    ItemManagerAction.Instance.m_kanNum / ItemManagerAction.Instance.m_kanMaxNum,
+                    1f);
 
         DOTween.To(() => ItemManagerAction.Instance.m_petGauge.value,
-        num =>
-        {
-            ItemManagerAction.Instance.m_petGauge.value = num;
-        },
-        (float)ItemManagerAction.Instance.m_petNum / ItemManagerAction.Instance.m_petMaxNum,
-        1f);
-
+                    num => ItemManagerAction.Instance.m_petGauge.value = num,
+                    ItemManagerAction.Instance.m_petNum / ItemManagerAction.Instance.m_petMaxNum,
+                    1f);
     }
 }

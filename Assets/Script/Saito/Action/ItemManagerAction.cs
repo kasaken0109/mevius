@@ -18,4 +18,34 @@ public class ItemManagerAction : MonoBehaviour
     {
         Instance = this;
     }
+    public bool UseKanGauge()
+    {
+        if (Instance.m_kanNum >= Instance.m_kanMaxNum)
+        {
+            DOTween.To(() => Instance.m_kanGauge.value,
+                        num => Instance.m_kanGauge.value = num,
+                        Instance.m_kanNum / Instance.m_kanMaxNum,
+                        1f);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool UsePetGauge()
+    {
+        if (Instance.m_petNum >= Instance.m_petMaxNum)
+        {
+            DOTween.To(() => Instance.m_petGauge.value,
+                        num => Instance.m_petGauge.value = num,
+                        Instance.m_petNum / Instance.m_petMaxNum,
+                        1f);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
