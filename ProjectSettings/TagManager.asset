@@ -10,6 +10,8 @@ TagManager:
   - Obstacle
   - PlayerAttack
   - EnemyAttack
+  - SpecialAttack
+  - DeadZone
   layers:
   - Default
   - TransparentFX
