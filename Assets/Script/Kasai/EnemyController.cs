@@ -28,86 +28,87 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (turnManager.turnName == TurnManager.TurnName.PLAYERMOVE)
-        //{
-        //    turnManager.turnName = TurnManager.TurnName.ENEMYMOVE;
-        //    Move();
-        //}
-        //else if (turnManager.turnName == TurnManager.TurnName.ENEMYATTACK)
-        //{
-        //    Hit();
-        //}
-        //if ()
-        //{
-
-        //}
-
-
-        switch (turnManager.turnName)
-        {
-            case TurnManager.TurnName.PLAYERMOVE:
-                turnManager.turnName = TurnManager.TurnName.ENEMYMOVE;
-                break;
-            case TurnManager.TurnName.ENEMYMOVE:
-                Move();
-                break;
-            case TurnManager.TurnName.PLAYERATTACK:
-                turnManager.turnName = TurnManager.TurnName.ENEMYATTACK;
-                break;
-            case TurnManager.TurnName.ENEMYATTACK:
-                Hit();
-                break;
-            default:
-                break;
-        }
-        if (m_hp <= 0)
-        {
-            Instantiate(m_drop, this.transform.position, this.transform.rotation);
-            Debug.Log("敵が" + m_drop + "を落とした！");
-            //itemManager.AddItem(m_dropNum);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-
-    /// <summary>
-    /// 攻撃をする関数
-    /// </summary>
-    public void Hit()
-    {
-        if (attackFlag)
-        {
-            //Player.Hit(m_power);
-        }
-    }
-
-    /// <summary>
-    /// 攻撃を受けたときに呼ばれる関数
-    /// </summary>
-    /// <param name="power">プレイヤーの攻撃力</param>
-    public void Damage(int power)
-    {
-        m_hp -= power;
-        Debug.Log("敵に" + power + "のダメージを与えた！");
-    }
-
-    /// <summary>
-    /// 動く関数(今はいらないが今後使うように作成した)
-    /// </summary>
-    public void Move()
-    {
-        if (MoveMode)
-        {
-
-        }
     }
 }
+
+    // Update is called once per frame
+//    void Update()
+//    {
+//        //if (turnManager.turnName == TurnManager.TurnName.PLAYERMOVE)
+//        //{
+//        //    turnManager.turnName = TurnManager.TurnName.ENEMYMOVE;
+//        //    Move();
+//        //}
+//        //else if (turnManager.turnName == TurnManager.TurnName.ENEMYATTACK)
+//        //{
+//        //    Hit();
+//        //}
+//        //if ()
+//        //{
+
+//        //}
+
+
+//        switch (turnManager.turnName)
+//        {
+//            case TurnManager.TurnName.PLAYER:
+//                turnManager.turnName = TurnManager.TurnName.ENEMY;
+//                break;
+//            case TurnManager.TurnName.ENEMY:
+//                Move();
+//                break;
+//            case TurnManager.TurnName.PLAYERATTACK:
+//                turnManager.turnName = TurnManager.TurnName.ENEMYATTACK;
+//                break;
+//            case TurnManager.TurnName.ENEMYATTACK:
+//                Hit();
+//                break;
+//            default:
+//                break;
+//        }
+//        if (m_hp <= 0)
+//        {
+//            Instantiate(m_drop, this.transform.position, this.transform.rotation);
+//            Debug.Log("敵が" + m_drop + "を落とした！");
+//            //itemManager.AddItem(m_dropNum);
+//        }
+//    }
+
+//    private void OnCollisionEnter2D(Collision2D collision)
+//    {
+        
+//    }
+
+//    /// <summary>
+//    /// 攻撃をする関数
+//    /// </summary>
+//    public void Hit()
+//    {
+//        if (attackFlag)
+//        {
+//            //Player.Hit(m_power);
+//        }
+//    }
+
+//    /// <summary>
+//    /// 攻撃を受けたときに呼ばれる関数
+//    /// </summary>
+//    /// <param name="power">プレイヤーの攻撃力</param>
+//    public void Damage(int power)
+//    {
+//        m_hp -= power;
+//        Debug.Log("敵に" + power + "のダメージを与えた！");
+//    }
+
+//    /// <summary>
+//    /// 動く関数(今はいらないが今後使うように作成した)
+//    /// </summary>
+//    public void Move()
+//    {
+//        if (MoveMode)
+//        {
+
+//        }
+//    }
+//}
