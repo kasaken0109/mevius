@@ -33,6 +33,9 @@ public class PlayerAction : MonoBehaviour
     GameObject attack;
     float attackTimer;
     float attackPower = 30f;
+    [SerializeField]
+    GameObject collection;
+    bool collect;
     private void Awake()
     {
         Instance = this;
@@ -78,7 +81,7 @@ public class PlayerAction : MonoBehaviour
                 if (!firstPush)
                 {
                     firstPush = true;
-                    pushTimer = 0.1f;
+                    pushTimer = 0.3f;
                 }
                 else
                 {
@@ -130,6 +133,17 @@ public class PlayerAction : MonoBehaviour
                 attack.SetActive(false);
             }
         }
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            MoveStop();
+            collection.SetActive(true);
+            collect = true;
+        }
+        else if (collect)
+        {
+            collect = false;
+            collection.SetActive(false);
+        }
     }
     private void FixedUpdate()
     {
@@ -176,10 +190,7 @@ public class PlayerAction : MonoBehaviour
             dash = false;           
             firstPush = false;
         }
-        if (Input.GetAxisRaw("Vertical") != 0)
-        {
-            MoveStop();
-        }
+        
     }
 
     public void MoveStop()
@@ -201,5 +212,8 @@ public class PlayerAction : MonoBehaviour
     }
     public int GetPlayerMaxHP() { return playerMaxHP; }
     public int GetPlayerPower() { return power; }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
 }

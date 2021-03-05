@@ -20,14 +20,22 @@ public class EnemyAction : MonoBehaviour
         CurrentHP = playerMaxHP;
         attack.SetActive(false);
     }
-
+    private void Update()
+    {
+        
+    }
     public void Damage(int damege)
     {
         CurrentHP -= damege;
         if (CurrentHP <= 0)
         {
-            gameObject.SetActive(false);
+            Dead();
         }
+    }
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,4 +54,5 @@ public class EnemyAction : MonoBehaviour
             Debug.Log(CurrentHP);
         }
     }
+
 }
