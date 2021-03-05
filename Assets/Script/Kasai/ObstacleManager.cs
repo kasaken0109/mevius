@@ -16,10 +16,11 @@ public class ObstacleManager : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.tag == "PlayerAttack")
+        if (collision.tag == "PlayerAttack")
         {
+            Debug.Log(collision.name);
             Destroy(this.gameObject);
         }
     }
