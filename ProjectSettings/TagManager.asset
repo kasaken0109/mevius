@@ -10,6 +10,9 @@ TagManager:
   - Obstacle
   - PlayerAttack
   - EnemyAttack
+  - SpecialAttack
+  - DeadZone
+  - Spawn
   layers:
   - Default
   - TransparentFX

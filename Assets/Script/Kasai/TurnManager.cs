@@ -14,21 +14,21 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         gameState = GameState.GAMESTART;
-        turnName = TurnName.PLAYERMOVE;
+        //turnName = TurnName.PLAYERMOVE;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (turnName == TurnName.TURNEND)
-        {
-            m_turnNum -= 1;
-        }
-        if (m_turnNum == 0)
-        {
-            gameState = GameState.GAMEOVER;
-            Debug.Log("GameOver");
-        }
+        //if (turnName == TurnName.TURNEND)
+        //{
+        //    m_turnNum -= 1;
+        //}
+        //if (m_turnNum == 0)
+        //{
+        //    gameState = GameState.GAMEOVER;
+        //    Debug.Log("GameOver");
+        //}
     }
 
     /// <summary>
@@ -36,12 +36,9 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     public enum TurnName
     {
-        PLAYERMOVE,
-        ENEMYMOVE,
-        PLAYERATTACK,
-        ENEMYATTACK,
-        ITEMMAKE,
-        TURNEND,
+        PLAYER,
+        ENEMY,
+        FINISHED,
     }
 
     /// <summary>
