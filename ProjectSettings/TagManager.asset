@@ -13,6 +13,7 @@ TagManager:
   - SpecialAttack
   - DeadZone
   - Spawn
+  - Joint
   layers:
   - Default
   - TransparentFX
