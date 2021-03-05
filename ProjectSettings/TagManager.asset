@@ -12,6 +12,7 @@ TagManager:
   - EnemyAttack
   - SpecialAttack
   - DeadZone
+  - Spawn
   layers:
   - Default
   - TransparentFX
