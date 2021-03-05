@@ -1110,7 +1110,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u5730\u9762\u3067space\u30AD\u30FC\uFF1A\u30B8\u30E3\u30F3\u30D7\n\u7A7A\u4E2D\u3067space\u30AD\u30FC\uFF1A\u7A7A\u4E2D\u30B8\u30E3\u30F3\u30D7\uFF082\u56DE\u307E\u3067\uFF09\nA
-    or D or \u2190 or \u2192\uFF1A\u79FB\u52D5"
+    or D or \u2190 or \u2192\uFF1A\u79FB\u52D5\uFF08\u7D20\u65E9\u304F2\u56DE\u3067\u30C0\u30C3\u30B7\u30E5\uFF09\n"
 --- !u!222 &1408562432
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
+    public static PlayerAction Instance { get; private set; }
     Rigidbody2D m_rb;
     [SerializeField]
     float jumpPower = 1f;
@@ -22,6 +23,18 @@ public class PlayerAction : MonoBehaviour
     bool firstPush;
     bool dash;
     float pushTimer = 0.3f;
+
+    [SerializeField]
+    int playerMaxHP = 100;
+    public int PlayerCurrentHP { get; private set; }
+    [SerializeField]
+    int power = 5;
+    [SerializeField]
+    GameObject attack;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -95,7 +108,6 @@ public class PlayerAction : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             Vector2 dir = Vector2.zero;
@@ -139,5 +151,30 @@ public class PlayerAction : MonoBehaviour
             dash = false;           
             firstPush = false;
         }
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            MoveStop();
+        }
     }
+
+    public void MoveStop()
+    {
+        m_rb.velocity = Vector2.zero;
+    }
+
+    public void Damage(int damege)
+    {
+        PlayerCurrentHP -= damege;
+    }
+    public void HPHealing(int healingPoint)
+    {
+        PlayerCurrentHP += healingPoint;
+        if (PlayerCurrentHP > playerMaxHP)
+        {
+            PlayerCurrentHP = playerMaxHP;
+        }
+    }
+    public int GetPlayerMaxHP() { return playerMaxHP; }
+    public int GetPlayerPower() { return power; }
+
 }
