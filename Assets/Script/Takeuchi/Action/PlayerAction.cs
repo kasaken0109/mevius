@@ -17,7 +17,7 @@ public class PlayerAction : MonoBehaviour
     [SerializeField]
     int maxJumpCount = 2;
     int jumpCount = 0;
-    bool directionLR;
+    public bool directionLR;
     bool directionChange;
     bool onGround;
     bool firstPush;

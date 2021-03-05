@@ -35,6 +35,15 @@ public class EnemyAction : MonoBehaviour
         if (collision.tag == "PlayerAttack")
         {
             Damage(PlayerAction.Instance.GetPlayerPower());
+            if (PlayerAction.Instance.directionLR)
+            {
+                m_rb.AddForce(Vector2.right * 30f, ForceMode2D.Impulse);
+            }
+            else
+            {
+                m_rb.AddForce(Vector2.right * -30f, ForceMode2D.Impulse);
+            }
+            Debug.Log(CurrentHP);
         }
     }
 }
