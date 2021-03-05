@@ -21,8 +21,9 @@ public class StageManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
-            Instantiate(collision.gameObject, m_spawn.position,m_spawn.rotation);
+            collision.gameObject.SetActive(false);
+            collision.gameObject.transform.position = m_spawn.position;
+            collision.gameObject.SetActive(true);
         }
     }
 }
