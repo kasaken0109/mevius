@@ -8,6 +8,8 @@ TagManager:
   - Recycle
   - TimeMachine
   - Obstacle
+  - PlayerAttack
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
