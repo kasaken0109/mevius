@@ -29,4 +29,12 @@ public class EnemyAction : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayerAttack")
+        {
+            Damage(PlayerAction.Instance.GetPlayerPower());
+        }
+    }
 }

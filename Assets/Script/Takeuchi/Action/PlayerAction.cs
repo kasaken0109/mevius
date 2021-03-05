@@ -112,7 +112,7 @@ public class PlayerAction : MonoBehaviour
         if (Input.GetButtonDown("Attack") && attackTimer <= 0)
         {
             attack.SetActive(true);
-            attackTimer = 0.5f;
+            attackTimer = 0.2f;
             if (directionLR)
             {
                 m_rb.AddForce(Vector2.right * attackPower, ForceMode2D.Impulse);
