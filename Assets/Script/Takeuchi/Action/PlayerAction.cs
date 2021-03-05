@@ -31,6 +31,8 @@ public class PlayerAction : MonoBehaviour
     int power = 5;
     [SerializeField]
     GameObject attack;
+    float attackTimer;
+    float attackPower = 30f;
     private void Awake()
     {
         Instance = this;
@@ -40,6 +42,8 @@ public class PlayerAction : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         directionLR = true;
         jumpCount = maxJumpCount;
+        PlayerCurrentHP = playerMaxHP;
+        attack.SetActive(false);
     }
 
     private void Update()
@@ -74,7 +78,7 @@ public class PlayerAction : MonoBehaviour
                 if (!firstPush)
                 {
                     firstPush = true;
-                    pushTimer = 0.3f;
+                    pushTimer = 0.1f;
                 }
                 else
                 {
@@ -104,6 +108,27 @@ public class PlayerAction : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1);
             }
             directionChange = false;
+        }
+        if (Input.GetButtonDown("Attack") && attackTimer <= 0)
+        {
+            attack.SetActive(true);
+            attackTimer = 0.5f;
+            if (directionLR)
+            {
+                m_rb.AddForce(Vector2.right * attackPower, ForceMode2D.Impulse);
+            }
+            else
+            {
+                m_rb.AddForce(Vector2.right * -attackPower, ForceMode2D.Impulse);
+            }
+        }
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+            if (attackTimer <= 0)
+            {
+                attack.SetActive(false);
+            }
         }
     }
     private void FixedUpdate()
