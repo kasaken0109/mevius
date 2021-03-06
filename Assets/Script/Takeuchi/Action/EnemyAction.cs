@@ -7,6 +7,7 @@ public class EnemyAction : MonoBehaviour
     Rigidbody2D m_rb;
     [SerializeField]
     bool directionLR;
+    bool directionChange;
     [SerializeField]
     int playerMaxHP = 15;
     public int CurrentHP { get; private set; }
@@ -14,19 +15,42 @@ public class EnemyAction : MonoBehaviour
     int power = 5;
     [SerializeField]
     GameObject attack;
+    float attackTimer;
+    int attackPower = 5;
     [SerializeField]
     SearchPlayer player;
+    [SerializeField]
+    float moveSpeed = 2f;
+    [SerializeField]
+    SearchPlayer attackPos;
+    [SerializeField]
+    EnemyAttack enemyAttack;
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();        
         CurrentHP = playerMaxHP;
         attack.SetActive(false);
+        directionChange = true;
+        enemyAttack.SetPower(attackPower);
     }
     private void Update()
     {
         if (player.OnPlayer)
         {
-
+            FindPlayerMove();
+            AttackPlayer();
+        }
+        if (directionChange)
+        {
+            if (directionLR)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            directionChange = false;
         }
     }
     public void Damage(int damege)
@@ -60,4 +84,48 @@ public class EnemyAction : MonoBehaviour
         }
     }
 
+    private void FindPlayerMove()
+    {
+        Vector2 dir = Vector2.zero;
+        float target = PlayerAction.Instance.transform.position.x - transform.position.x;
+        if (target > 0)
+        {
+            dir = Vector2.right * moveSpeed;
+            if (!directionLR)
+            {
+                directionLR = true;
+                directionChange = true;
+            }
+        }
+        else if(target < 0)
+        {
+            dir = Vector2.right * -moveSpeed;
+            if (directionLR)
+            {
+                directionLR = false;
+                directionChange = true;
+            }
+        }
+        dir.y = m_rb.velocity.y;
+        m_rb.velocity = dir;
+    }
+
+    private void AttackPlayer()
+    {
+        if (attackPos.OnPlayer && attackTimer <= 0)
+        {
+            attack.SetActive(true);
+            attackTimer = 2f;
+        }
+        else if (attackTimer <= 1.8f && attackTimer > 0)
+        {
+            attack.SetActive(false);
+            m_rb.velocity = Vector2.zero;
+        }
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+        
+    }
 }

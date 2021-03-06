@@ -202,6 +202,12 @@ public class PlayerAction : MonoBehaviour
     {
         PlayerCurrentHP -= damege;
     }
+    public void Damage(int damege,Vector2 dir)
+    {
+        m_rb.AddForce(-dir * damege * 5f, ForceMode2D.Impulse);
+        PlayerCurrentHP -= damege;
+        Debug.Log(damege);
+    }
     public void HPHealing(int healingPoint)
     {
         PlayerCurrentHP += healingPoint;
