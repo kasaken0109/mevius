@@ -1894,14 +1894,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_combustibleNum: 0
-  m_combustibleMaxNum: 3
-  m_combustibleConsumption: 1
+  m_combustibleMaxNum: 100
   m_plasticNum: 0
-  m_plasticMaxNum: 3
-  m_plasticConsumption: 1
+  m_plasticMaxNum: 100
   m_oversizeNum: 0
-  m_oversizeMaxNum: 3
-  m_oversizeConsumption: 3
+  m_oversizeMaxNum: 100
   m_combustibleGauge: {fileID: 251393630}
   m_plasticGauge: {fileID: 1135891245}
   m_oversizeGauge: {fileID: 1320349463}
@@ -2129,7 +2126,7 @@ GameObject:
   - component: {fileID: 1497732191}
   - component: {fileID: 1497732190}
   m_Layer: 0
-  m_Name: "\u7F36 "
+  m_Name: "\u53EF\u71C3\u30B4\u30DF"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

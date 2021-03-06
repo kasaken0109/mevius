@@ -8,21 +8,15 @@ public class ItemManagerAction : MonoBehaviour
     /// <summary>現在の可燃ゴミの所持数</summary>
     public float m_combustibleNum;
     /// <summary>可燃ゴミの最大所持数</summary>
-    public float m_combustibleMaxNum = 3;
-    /// <summary>可燃ゴミの消費量</summary>
-    public float m_combustibleConsumption = 1;
+    public float m_combustibleMaxNum = 100;
     /// <summary>現在のプラスチックの所持数</summary>
     public float m_plasticNum;
     /// <summary>プラスチックの最大所持量</summary>
-    public float m_plasticMaxNum = 3;
-    /// <summary>プラスチックの消費量</summary>
-    public float m_plasticConsumption = 1;
+    public float m_plasticMaxNum = 100;
     /// <summary>現在の粗大ごみの所持数</summary>
     public float m_oversizeNum;
     /// <summary>粗大ごみの最大所持数</summary>
-    public float m_oversizeMaxNum = 3;
-    /// <summary>粗大ごみの消費量</summary>
-    public float m_oversizeConsumption = 3;
+    public float m_oversizeMaxNum = 100;
 
     public Slider m_combustibleGauge = null;
     public Slider m_plasticGauge = null;
