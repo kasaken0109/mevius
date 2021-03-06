@@ -8,10 +8,13 @@ public class ItemAction : MonoBehaviour
     [SerializeField] GameObject m_player;
     Rigidbody2D m_rb;
     [SerializeField] ItemManagerAction itemManager;
+    public bool m_moveChack = false;
+    Vector2 dir;
     public enum Materal
     {
         Kan,
-        Plastic
+        Plastic,
+        Oversize
     }
     [SerializeField] Materal type = Materal.Kan;
 
@@ -23,10 +26,11 @@ public class ItemAction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && m_moveChack)
         {
             Vector2 playerVec = new Vector2(m_player.transform.position.x, m_player.transform.position.y);
-            m_rb.velocity = playerVec - (new Vector2(this.transform.position.x, this.transform.position.y));
+            dir = playerVec - (new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y));
+            m_rb.velocity = dir;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,5 +60,24 @@ public class ItemAction : MonoBehaviour
                     num => ItemManagerAction.Instance.m_plasticGauge.value = num,
                     ItemManagerAction.Instance.m_plasticNum / ItemManagerAction.Instance.m_plasticMaxNum,
                     1f);
+        DOTween.To(() => ItemManagerAction.Instance.m_oversizeGauge.value,
+                    num => ItemManagerAction.Instance.m_oversizeGauge.value = num,
+                    ItemManagerAction.Instance.m_oversizeNum / ItemManagerAction.Instance.m_plasticMaxNum,
+                    1f);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Collection")
+        {
+            m_moveChack = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Collection")
+        {
+            m_moveChack = false;
+        }
+    }
+
 }
