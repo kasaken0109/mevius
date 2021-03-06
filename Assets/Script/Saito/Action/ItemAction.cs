@@ -39,11 +39,15 @@ public class ItemAction : MonoBehaviour
         {
             if (this.type == Materal.Kan && ItemManagerAction.Instance.m_combustibleNum < ItemManagerAction.Instance.m_combustibleMaxNum)
             {
-                ItemManagerAction.Instance.m_combustibleNum++;
+                ItemManagerAction.Instance.m_combustibleNum += 20;
             }
             else if (this.type == Materal.Plastic && ItemManagerAction.Instance.m_plasticNum < ItemManagerAction.Instance.m_plasticMaxNum)
             {
-                ItemManagerAction.Instance.m_plasticNum++;
+                ItemManagerAction.Instance.m_plasticNum += 20;
+            }
+            else if (this.type == Materal.Oversize && ItemManagerAction.Instance.m_oversizeNum < ItemManagerAction.Instance.m_plasticMaxNum)
+            {
+                ItemManagerAction.Instance.m_plasticNum += 20;
             }
             GetItem();
             Destroy(this.gameObject);
