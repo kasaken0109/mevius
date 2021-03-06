@@ -2184,6 +2184,11 @@ MonoBehaviour:
     m_Bits: 256
   rayForGround: {x: 0, y: -1}
   maxJumpCount: 2
+  directionLR: 0
+  playerMaxHP: 100
+  power: 5
+  attack: {fileID: 0}
+  collection: {fileID: 0}
 --- !u!212 &1826841960
 SpriteRenderer:
   m_ObjectHideFlags: 0
