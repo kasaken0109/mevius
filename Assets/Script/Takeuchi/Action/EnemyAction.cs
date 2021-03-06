@@ -14,6 +14,8 @@ public class EnemyAction : MonoBehaviour
     int power = 5;
     [SerializeField]
     GameObject attack;
+    [SerializeField]
+    SearchPlayer player;
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();        
@@ -22,7 +24,10 @@ public class EnemyAction : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (player.OnPlayer)
+        {
+
+        }
     }
     public void Damage(int damege)
     {

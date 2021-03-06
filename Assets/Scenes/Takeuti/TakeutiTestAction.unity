@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 292725717}
   m_Layer: 0
   m_Name: Collection
-  m_TagString: Joint
+  m_TagString: Collection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +391,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 292725715}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e77bb640a22384944af0bf92b1affa09, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1009,6 +1009,7 @@ MonoBehaviour:
   playerMaxHP: 15
   power: 5
   attack: {fileID: 1110753584}
+  player: {fileID: 0}
 --- !u!58 &862813226
 CircleCollider2D:
   m_ObjectHideFlags: 0
