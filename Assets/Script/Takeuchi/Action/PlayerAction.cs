@@ -36,6 +36,8 @@ public class PlayerAction : MonoBehaviour
     [SerializeField]
     GameObject collection;
     bool collect;
+    [SerializeField]
+    GameObject bulletPrefab;
     private void Awake()
     {
         Instance = this;
@@ -47,6 +49,7 @@ public class PlayerAction : MonoBehaviour
         jumpCount = maxJumpCount;
         PlayerCurrentHP = playerMaxHP;
         attack.SetActive(false);
+        collection.SetActive(false);
     }
 
     private void Update()
@@ -143,6 +146,12 @@ public class PlayerAction : MonoBehaviour
         {
             collect = false;
             collection.SetActive(false);
+        }
+        if (Input.GetButtonDown("OversizeAttack"))
+        {
+            MoveStop();
+            GameObject bullet = Instantiate<GameObject>(bulletPrefab);
+            bullet.transform.position = transform.position;
         }
     }
     private void FixedUpdate()
