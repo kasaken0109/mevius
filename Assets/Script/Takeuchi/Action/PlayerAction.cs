@@ -147,7 +147,7 @@ public class PlayerAction : MonoBehaviour
             collect = false;
             collection.SetActive(false);
         }
-        if (Input.GetButtonDown("OversizeAttack"))
+        if (Input.GetButtonDown("OversizeAttack")&&ItemManagerAction.Instance.UseOversizeGauge(20))
         {
             MoveStop();
             GameObject bullet = Instantiate<GameObject>(bulletPrefab);

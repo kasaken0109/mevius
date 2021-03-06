@@ -269,6 +269,8 @@ MonoBehaviour:
   power: 5
   attack: {fileID: 1609703258}
   collection: {fileID: 292725715}
+  bulletPrefab: {fileID: 8078198172425651984, guid: b461785a188034a48b8d2c0f99a34f5a,
+    type: 3}
 --- !u!212 &286687506
 SpriteRenderer:
   m_ObjectHideFlags: 0
