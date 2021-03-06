@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// ステージの管理をする
+/// </summary>
 public class StageManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    ///<summary>スポーンする地点</summary>
     Transform m_spawn = null;
     void Start()
     {
