@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Takeuti/TakeutiTestAction.unity
     guid: 0e7d2a4dc292c3a4d928e2ca0f1b28cb
+  - enabled: 1
+    path: Assets/Scenes/Main/ProtoMainScene.unity
+    guid: ed8224d0fc737db4aa3f9304ed88d771
   m_configObjects: {}

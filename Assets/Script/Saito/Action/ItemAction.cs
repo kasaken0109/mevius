@@ -10,13 +10,14 @@ public class ItemAction : MonoBehaviour
     [SerializeField] ItemManagerAction itemManager;
     public bool m_moveChack = false;
     Vector2 dir;
+    private bool m_hitCheck = false;
     public enum Materal
     {
-        Kan,
+        Combustible,
         Plastic,
         Oversize
     }
-    [SerializeField] Materal type = Materal.Kan;
+    [SerializeField] Materal type = Materal.Combustible;
 
     private void Start()
     {
@@ -35,39 +36,24 @@ public class ItemAction : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !m_hitCheck)
         {
-            if (this.type == Materal.Kan && ItemManagerAction.Instance.m_combustibleNum < ItemManagerAction.Instance.m_combustibleMaxNum)
+            m_hitCheck = true;
+            if (this.type == Materal.Combustible && ItemManagerAction.Instance.m_combustibleNum < ItemManagerAction.Instance.m_combustibleMaxNum)
             {
-                ItemManagerAction.Instance.m_combustibleNum += 20;
+                ItemManagerAction.Instance.SetCombustible(20);
             }
             else if (this.type == Materal.Plastic && ItemManagerAction.Instance.m_plasticNum < ItemManagerAction.Instance.m_plasticMaxNum)
             {
-                ItemManagerAction.Instance.m_plasticNum += 20;
+                ItemManagerAction.Instance.SetPlastic(20);
             }
-            else if (this.type == Materal.Oversize && ItemManagerAction.Instance.m_oversizeNum < ItemManagerAction.Instance.m_plasticMaxNum)
+            else if (this.type == Materal.Oversize && ItemManagerAction.Instance.m_oversizeNum < ItemManagerAction.Instance.m_oversizeMaxNum)
             {
-                ItemManagerAction.Instance.m_oversizeNum += 20;
+                ItemManagerAction.Instance.SetOversize(20);
             }
-            GetItem();
             Destroy(this.gameObject);
-        }
-    }
-    public void GetItem()
-    {
-        DOTween.To(() => ItemManagerAction.Instance.m_combustibleGauge.value,
-                    num => ItemManagerAction.Instance.m_combustibleGauge.value = num,
-                    ItemManagerAction.Instance.m_combustibleNum / ItemManagerAction.Instance.m_combustibleMaxNum,
-                    1f);
 
-        DOTween.To(() => ItemManagerAction.Instance.m_plasticGauge.value,
-                    num => ItemManagerAction.Instance.m_plasticGauge.value = num,
-                    ItemManagerAction.Instance.m_plasticNum / ItemManagerAction.Instance.m_plasticMaxNum,
-                    1f);
-        DOTween.To(() => ItemManagerAction.Instance.m_oversizeGauge.value,
-                    num => ItemManagerAction.Instance.m_oversizeGauge.value = num,
-                    ItemManagerAction.Instance.m_oversizeNum / ItemManagerAction.Instance.m_oversizeMaxNum,
-                    1f);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
