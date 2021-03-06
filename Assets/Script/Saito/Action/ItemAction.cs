@@ -26,7 +26,7 @@ public class ItemAction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && m_moveChack)
+        if (Input.GetButton("Fire2") && m_moveChack)
         {
             Vector2 playerVec = new Vector2(m_player.transform.position.x, m_player.transform.position.y);
             dir = playerVec - (new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y));
