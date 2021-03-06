@@ -16,12 +16,21 @@ public class PlayerShootController : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        if (PlayerAction.Instance.directionLR)
+        {
+            rigidbody2D.velocity = new Vector2(1, 0) * m_bulletSpeed;
+        }
+        else
+        {
+            rigidbody2D.velocity = new Vector2(-1, 0) * m_bulletSpeed;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        rigidbody2D.velocity = new Vector2(1, 0) * m_bulletSpeed;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
