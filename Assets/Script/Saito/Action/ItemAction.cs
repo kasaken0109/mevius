@@ -11,7 +11,7 @@ public class ItemAction : MonoBehaviour
     public enum Materal
     {
         Kan,
-        Petbottle
+        Plastic
     }
     [SerializeField] Materal type = Materal.Kan;
 
@@ -33,13 +33,13 @@ public class ItemAction : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (this.type == Materal.Kan && ItemManagerAction.Instance.m_kanNum < ItemManagerAction.Instance.m_kanMaxNum)
+            if (this.type == Materal.Kan && ItemManagerAction.Instance.m_combustibleNum < ItemManagerAction.Instance.m_combustibleMaxNum)
             {
-                ItemManagerAction.Instance.m_kanNum++;
+                ItemManagerAction.Instance.m_combustibleNum++;
             }
-            else if (this.type == Materal.Petbottle && ItemManagerAction.Instance.m_petNum < ItemManagerAction.Instance.m_petMaxNum)
+            else if (this.type == Materal.Plastic && ItemManagerAction.Instance.m_plasticNum < ItemManagerAction.Instance.m_plasticMaxNum)
             {
-                ItemManagerAction.Instance.m_petNum++;
+                ItemManagerAction.Instance.m_plasticNum++;
             }
             GetItem();
             Destroy(this.gameObject);
@@ -47,14 +47,14 @@ public class ItemAction : MonoBehaviour
     }
     public void GetItem()
     {
-        DOTween.To(() => ItemManagerAction.Instance.m_kanGauge.value,
-                    num => ItemManagerAction.Instance.m_kanGauge.value = num,
-                    ItemManagerAction.Instance.m_kanNum / ItemManagerAction.Instance.m_kanMaxNum,
+        DOTween.To(() => ItemManagerAction.Instance.m_combustibleGauge.value,
+                    num => ItemManagerAction.Instance.m_combustibleGauge.value = num,
+                    ItemManagerAction.Instance.m_combustibleNum / ItemManagerAction.Instance.m_combustibleMaxNum,
                     1f);
 
-        DOTween.To(() => ItemManagerAction.Instance.m_petGauge.value,
-                    num => ItemManagerAction.Instance.m_petGauge.value = num,
-                    ItemManagerAction.Instance.m_petNum / ItemManagerAction.Instance.m_petMaxNum,
+        DOTween.To(() => ItemManagerAction.Instance.m_plasticGauge.value,
+                    num => ItemManagerAction.Instance.m_plasticGauge.value = num,
+                    ItemManagerAction.Instance.m_plasticNum / ItemManagerAction.Instance.m_plasticMaxNum,
                     1f);
     }
 }
