@@ -1895,6 +1895,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301999521}
   m_CullTransparentMesh: 0
+--- !u!1 &1407663755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407663756}
+  - component: {fileID: 1407663757}
+  m_Layer: 0
+  m_Name: Collection
+  m_TagString: Collection
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407663756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407663755}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 33.11, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 286687507}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1407663757
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407663755}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 8
 --- !u!1 &1408562429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,6 +2716,9 @@ PrefabInstance:
         type: 3}
       propertyPath: collection
       value: 
+<<<<<<< HEAD
+      objectReference: {fileID: 1407663755}
+=======
       objectReference: {fileID: 2070960605}
     - target: {fileID: 1517322317765499412, guid: 02cc18cf840bfa64681664a11f7580cc,
         type: 3}
@@ -2676,6 +2726,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5493012239512671285, guid: 19501a95f57babd419e19434ddbb624f,
         type: 3}
+>>>>>>> 4064612bf311bcff9903a7c2cdeb9b9d01346996
     - target: {fileID: 1517322317765499414, guid: 02cc18cf840bfa64681664a11f7580cc,
         type: 3}
       propertyPath: m_LocalPosition.x
