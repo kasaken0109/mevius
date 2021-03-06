@@ -204,7 +204,8 @@ public class PlayerAction : MonoBehaviour
     }
     public void Damage(int damege,Vector2 dir)
     {
-        m_rb.AddForce(-dir * damege * 5f, ForceMode2D.Impulse);
+        Vector2 pos = transform.position;
+        m_rb.AddForce((dir - pos) * -50f, ForceMode2D.Impulse);
         PlayerCurrentHP -= damege;
         Debug.Log(damege);
     }

@@ -25,6 +25,7 @@ public class EnemyAction : MonoBehaviour
     SearchPlayer attackPos;
     [SerializeField]
     EnemyAttack enemyAttack;
+    float damegeTimer;
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();        
@@ -35,30 +36,41 @@ public class EnemyAction : MonoBehaviour
     }
     private void Update()
     {
-        if (player.OnPlayer)
+        if (damegeTimer > 0)
         {
-            FindPlayerMove();
-            AttackPlayer();
+            damegeTimer -= Time.deltaTime;
         }
-        if (directionChange)
+        else
         {
-            if (directionLR)
+            if (player.OnPlayer)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                FindPlayerMove();
+                AttackPlayer();
             }
-            else
+            if (directionChange)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                if (directionLR)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                directionChange = false;
             }
-            directionChange = false;
         }
     }
     public void Damage(int damege)
     {
-        CurrentHP -= damege;
-        if (CurrentHP <= 0)
+        if (damegeTimer <= 0)
         {
-            Dead();
+            CurrentHP -= damege;
+            if (CurrentHP <= 0)
+            {
+                Dead();
+            }
+            damegeTimer = 1f;
         }
     }
 
