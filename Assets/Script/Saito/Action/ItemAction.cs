@@ -26,9 +26,9 @@ public class ItemAction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && m_moveChack)
+        if (m_moveChack)
         {
-            Vector2 playerVec = new Vector2(m_player.transform.position.x, m_player.transform.position.y);
+            Vector2 playerVec = new Vector2(PlayerAction.Instance.transform.position.x, PlayerAction.Instance.transform.position.y);
             dir = playerVec - (new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y));
             m_rb.velocity = dir;
         }
@@ -47,7 +47,7 @@ public class ItemAction : MonoBehaviour
             }
             else if (this.type == Materal.Oversize && ItemManagerAction.Instance.m_oversizeNum < ItemManagerAction.Instance.m_plasticMaxNum)
             {
-                ItemManagerAction.Instance.m_plasticNum += 20;
+                ItemManagerAction.Instance.m_oversizeNum += 20;
             }
             GetItem();
             Destroy(this.gameObject);
@@ -66,7 +66,7 @@ public class ItemAction : MonoBehaviour
                     1f);
         DOTween.To(() => ItemManagerAction.Instance.m_oversizeGauge.value,
                     num => ItemManagerAction.Instance.m_oversizeGauge.value = num,
-                    ItemManagerAction.Instance.m_oversizeNum / ItemManagerAction.Instance.m_plasticMaxNum,
+                    ItemManagerAction.Instance.m_oversizeNum / ItemManagerAction.Instance.m_oversizeMaxNum,
                     1f);
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -12,19 +12,18 @@ public class PlayerShootController : MonoBehaviour
     [SerializeField] float m_bulletSpeed = 1f;
     /// <summary>弾の攻撃力</summary>
     [SerializeField] int m_bulletPower = 5;
-
-    PlayerAction player;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        if (player.directionLR)
+        if (PlayerAction.Instance.directionLR)
         {
             rigidbody2D.velocity = new Vector2(1, 0) * m_bulletSpeed;
         }
         else
         {
             rigidbody2D.velocity = new Vector2(-1, 0) * m_bulletSpeed;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
