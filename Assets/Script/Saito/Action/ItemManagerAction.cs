@@ -21,21 +21,36 @@ public class ItemManagerAction : MonoBehaviour
     public Slider m_combustibleGauge = null;
     public Slider m_plasticGauge = null;
     public Slider m_oversizeGauge = null;
+    private bool m_setCheck = false;
     public static ItemManagerAction Instance { get; private set; }
     private void Start()
     {
         Instance = this;
     }
-    public bool UseCombustibleGauge(float Consumption)
+    private void Update()
     {
-        Instance.m_combustibleNum -= Consumption;
+        if (m_setCheck)
+        {
+            DOTween.To(() => m_combustibleGauge.value,
+                    num => m_combustibleGauge.value = num,
+                    m_combustibleNum / m_combustibleMaxNum,
+                    1f);
 
-        if (Instance.m_combustibleNum >= Consumption)
-        {
-            DOTween.To(() => Instance.m_combustibleGauge.value,
-                        num => Instance.m_combustibleGauge.value = num,
-                        Instance.m_combustibleNum / Instance.m_combustibleMaxNum,
+            DOTween.To(() => m_plasticGauge.value,
+                        num => m_plasticGauge.value = num,
+                        m_plasticNum / m_plasticMaxNum,
                         1f);
+            DOTween.To(() => m_oversizeGauge.value,
+                        num => m_oversizeGauge.value = num,
+                        m_oversizeNum / m_oversizeMaxNum,
+                        1f);
+            m_setCheck = false;
+        }
+    }
+    public bool CheckCombustibleGauge(float Consumption)
+    {
+        if (m_combustibleNum >= Consumption)
+        {
             return true;
         }
         else
@@ -43,15 +58,10 @@ public class ItemManagerAction : MonoBehaviour
             return false;
         }
     }
-    public bool UsePlasticGauge(float Consumption)
+    public bool CheckPlasticGauge(float Consumption)
     {
-        if (Instance.m_plasticNum >= Consumption)
+        if (m_plasticNum >= Consumption)
         {
-            Instance.m_plasticNum -= Consumption;
-            DOTween.To(() => Instance.m_plasticGauge.value,
-                        num => Instance.m_plasticGauge.value = num,
-                        Instance.m_plasticNum / Instance.m_plasticMaxNum,
-                        1f);
             return true;
         }
         else
@@ -59,20 +69,45 @@ public class ItemManagerAction : MonoBehaviour
             return false;
         }
     }
-    public bool UseOversizeGauge(float Consumption)
+    public bool CheckOversizeGauge(float Consumption)
     {
-        Instance.m_oversizeNum -= Consumption;
         if (Instance.m_oversizeNum >= Consumption)
         {
-            DOTween.To(() => Instance.m_oversizeGauge.value,
-                        num => Instance.m_oversizeGauge.value = num,
-                        Instance.m_oversizeNum / Instance.m_oversizeMaxNum,
-                        1f);
             return true;
         }
         else
         {
             return false;
         }
+    }
+    public void UseCombustibleGauge(float Consumption)
+    {
+        m_oversizeNum -= Consumption;
+        m_setCheck = true;
+    }
+    public void UsePlasticGauge(float Consumption)
+    {
+        m_oversizeNum -= Consumption;
+        m_setCheck = true;
+    }
+    public void UseOversizeGauge(float Consumption)
+    {
+        m_oversizeNum -= Consumption;
+        m_setCheck = true;
+    }
+    public void SetCombustible(float num)
+    {
+        m_combustibleNum += num;
+        m_setCheck = true;
+    }
+    public void SetPlastic(float num)
+    {
+        m_plasticNum += num;
+        m_setCheck = true;
+    }
+    public void SetOversize(float num)
+    {
+        m_oversizeNum += num;
+        m_setCheck = true;
     }
 }
