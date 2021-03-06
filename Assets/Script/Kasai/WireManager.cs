@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>ワイヤーの挙動を制御する</summary>
 public class WireManager : MonoBehaviour
 {
     DistanceJoint2D m_joint;
     LineRenderer m_line;
     Collider2D m_hitObject = null;
+    /// <summary> ワイヤー</summary>
     [SerializeField] float m_jointDistance = 10f;
     [SerializeField] float m_pullSpeed = 0.15f;
     // Start is called before the first frame update

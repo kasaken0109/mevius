@@ -5,14 +5,18 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class ItemManagerAction : MonoBehaviour
 {
-    /// <summary>現在の缶の所持数</summary>
-    public float m_kanNum;
-    public float m_kanMaxNum = 3;
-    /// <summary>現在のペットボトルの所持数</summary>
-    public float m_petNum;
-    public float m_petMaxNum = 3;
-    public Slider m_kanGauge = null;
-    public Slider m_petGauge = null;
+    /// <summary>現在の可燃ゴミの所持数</summary>
+    public float m_combustibleNum;
+    public float m_combustibleMaxNum = 3;
+    /// <summary>現在のプラスチックの所持数</summary>
+    public float m_plasticNum;
+    public float m_plasticMaxNum = 3;
+    /// <summary>現在の粗大ごみの所持数</summary>
+    public float m_oversizeNum;
+    public float m_oversizeMaxNum = 3;
+    public Slider m_combustibleGauge = null;
+    public Slider m_plasticGauge = null;
+    public Slider m_oversizeGauge = null;
     public static ItemManagerAction Instance { get; private set; }
     private void Start()
     {
@@ -20,11 +24,11 @@ public class ItemManagerAction : MonoBehaviour
     }
     public bool UseKanGauge()
     {
-        if (Instance.m_kanNum >= Instance.m_kanMaxNum)
+        if (Instance.m_combustibleNum >= Instance.m_combustibleMaxNum)
         {
-            DOTween.To(() => Instance.m_kanGauge.value,
-                        num => Instance.m_kanGauge.value = num,
-                        Instance.m_kanNum / Instance.m_kanMaxNum,
+            DOTween.To(() => Instance.m_combustibleGauge.value,
+                        num => Instance.m_combustibleGauge.value = num,
+                        Instance.m_combustibleNum / Instance.m_combustibleMaxNum,
                         1f);
             return true;
         }
@@ -35,11 +39,11 @@ public class ItemManagerAction : MonoBehaviour
     }
     public bool UsePetGauge()
     {
-        if (Instance.m_petNum >= Instance.m_petMaxNum)
+        if (Instance.m_plasticNum >= Instance.m_plasticMaxNum)
         {
-            DOTween.To(() => Instance.m_petGauge.value,
-                        num => Instance.m_petGauge.value = num,
-                        Instance.m_petNum / Instance.m_petMaxNum,
+            DOTween.To(() => Instance.m_plasticGauge.value,
+                        num => Instance.m_plasticGauge.value = num,
+                        Instance.m_plasticNum / Instance.m_plasticMaxNum,
                         1f);
             return true;
         }

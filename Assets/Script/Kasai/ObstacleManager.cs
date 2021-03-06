@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>障害物を管理する </summary>
 public class ObstacleManager : MonoBehaviour
 {
     // Start is called before the first frame update
