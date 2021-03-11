@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField]
-    Dictionary<string, ItemBaseData> itemList = new Dictionary<string, ItemBaseData>()
-    {
-        
-    };
-    // Start is called before the first frame update
+    public List<string> itemList = new List<string>();
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
