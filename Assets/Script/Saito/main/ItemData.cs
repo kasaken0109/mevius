@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemData : MonoBehaviour
+﻿/// <summary>
+/// アイテムのデータ
+/// クラフト系の先頭のアイテムよりも前に記述されてるか否かで複数持てるかのフラグ管理をする
+/// </summary>
+public enum ItemData
 {
-    public enum ItemList
-    {
         #region ステータス系
         ///<summary>鶏肉</summary>
         Chicken,
@@ -21,6 +19,8 @@ public class ItemData : MonoBehaviour
         Herbs,
         ///<summary>治癒薬</summary>
         HealingDrug,
+        ///<summary>端材</summary>
+        EndMaterial,    
         #endregion
 
         #region 素材系
@@ -32,8 +32,12 @@ public class ItemData : MonoBehaviour
         AluminumCan,
         ///<summary>布切れ</summary>
         PieceOfCloth,
+        ///<summary>石</summary>
+        Stone,
+        ///<summary>枯れた枝</summary>
+        DeadBranch,
         ///<summary>藁</summary>
-        straw,
+        Straw,
         ///<summary>しなやかな枝</summary>
         SuppleBranches,
         ///<summary>丈夫な枝</summary>
@@ -58,16 +62,16 @@ public class ItemData : MonoBehaviour
         PickaxeCore,
         ///<summary>斧の骨子</summary>
         AxeCore,
-        #endregion
+    #endregion
 
-        #region クラフト系
+        #region クラフト系(一つしか持てない)
         ///<summary>アルミナイフ</summary>
         AluminiumKnife,
         ///<summary>脆いナイフ</summary>
         FragileKnife,
         ///<summary>小型ナイフ</summary>
         SmallKnife,
-        ///<summary>マチェータ</summary>
+        ///<summary>マチェット</summary>
         Machete,
         ///<summary>ピッケル1</summary>
         Pickaxe1,
@@ -84,7 +88,5 @@ public class ItemData : MonoBehaviour
         ///<summary>火</summary>
         Fire,
         #endregion
-        ///<summary>端材</summary>
-        EndMaterial
-    }
+        
 }

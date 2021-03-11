@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class ItemDisassemblyData : MonoBehaviour
 {
-    public　enum DisassemblyList
-    {
-        ///<summary>小型ナイフ</summary>
-        SmallKnife,
-        ///<summary>ピッケル1</summary>
-        Pickaxe1,
-        ///<summary>アルミナイフ</summary>
-        AluminiumKnife,
-        ///<summary>脆いナイフ</summary>
-        FragileKnife,
-        ///<summary>斧</summary>
-        Axe,
-    }
+    public ItemData SmallKnefe = ItemData.KnifeCore;
+    public ItemData Pickaxe1 = ItemData.PickaxeCore;
+    public ItemData AluminiumKnife = ItemData.Aluminium;
+    public ItemData FragileKnife = ItemData.IronPiece;
+    public ItemData Axe = ItemData.AxeCore;
+    
+
 }
