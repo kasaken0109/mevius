@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ItemDisassemblyData : MonoBehaviour
 {
-    public ItemData SmallKnefe = ItemData.KnifeCore;
-    public ItemData Pickaxe1 = ItemData.PickaxeCore;
-    public ItemData AluminiumKnife = ItemData.Aluminium;
-    public ItemData FragileKnife = ItemData.IronPiece;
-    public ItemData Axe = ItemData.AxeCore;
+    public ItemEnum SmallKnefe = ItemEnum.KnifeCore;
+    public ItemEnum Pickaxe1 = ItemEnum.PickaxeCore;
+    public ItemEnum AluminiumKnife = ItemEnum.Aluminium;
+    public ItemEnum FragileKnife = ItemEnum.IronPiece;
+    public ItemEnum Axe = ItemEnum.AxeCore;
     
 
 }

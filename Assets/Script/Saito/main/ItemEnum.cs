@@ -2,7 +2,7 @@
 /// アイテムのデータ
 /// クラフト系の先頭のアイテムよりも前に記述されてるか否かで複数持てるかのフラグ管理をする
 /// </summary>
-public enum ItemData
+public enum ItemEnum
 {
         #region ステータス系
         ///<summary>鶏肉</summary>
@@ -90,3 +90,5 @@ public enum ItemData
         #endregion
         
 }
+
+
