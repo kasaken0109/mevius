@@ -39,14 +39,14 @@ public class WireManager : MonoBehaviour
 
         if (Input.GetButton("Fire1") && m_joint.distance >= m_jointDistance && m_hitObject)
         {
-            Debug.Log("巻き取り");
+            //Debug.Log("巻き取り");
             m_line.enabled = true;
             DrawLaser(m_hitObject.gameObject.transform.position);
             m_joint.distance -= m_pullSpeed;
         }
         else
         {
-            Debug.Log("切り離し");
+            //Debug.Log("切り離し");
             m_line.enabled = false;
             Debug.Log(m_joint.enabled);
             m_joint.enabled = false;
@@ -57,7 +57,7 @@ public class WireManager : MonoBehaviour
     {
         if (collision.tag == "Joint")
         {
-            Debug.Log("入った！");
+            //Debug.Log("入った！");
             m_hitObject = collision;
             Debug.Log(m_joint.distance);
         }
